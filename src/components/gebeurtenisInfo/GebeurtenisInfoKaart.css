@@ -1,0 +1,26 @@
+a:link {
+    text-decoration: none;
+    color: RGBA(255, 86, 0, 1);
+}
+
+a:visited {
+    text-decoration: none;
+    color: RGBA(255, 67, 0, 1)
+}
+
+.reddit-post {
+    /*background-color: RGBA(26, 26, 27, 1);*/
+    border: rgb(129, 131, 132) solid 1px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.reddit-title {
+    font-size:8px;
+}
+
+.reddit-info {
+    font-size: 12px;
+    color: white;
+}

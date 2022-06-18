@@ -9,6 +9,7 @@ import Profile from "./pages/profile/Profile";
 import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/SignUp";
 import {AuthContext} from "./context/AuthContext";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const { isAuth } = useContext(AuthContext);
@@ -16,8 +17,9 @@ function App() {
 
   return (
       <>
+
+          <div className="content">
         <NavBar />
-        <div className="content">
 
         <Switch>
               <Route exact path="/">
@@ -41,8 +43,12 @@ function App() {
               </Route>
         </Switch>
 
-        </div>
+            <Footer className="outer-content-container">
+                <div className="inner-content-container">
+                </div>
+            </Footer>
 
+          </div>
       </>
   );
 }

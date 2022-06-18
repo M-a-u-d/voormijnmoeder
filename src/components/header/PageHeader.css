@@ -1,0 +1,25 @@
+
+header {
+    background: var(--secondary);
+    background: linear-gradient(133deg, var(--secondary) 0%, var(--primary) 86%, var(--primary) 100%);
+    text-align: center;
+}
+
+header img {
+    width: 200px;
+}
+
+.hero-content {
+    padding: 100px 0;
+}
+
+
+/*header a,*/
+/*header a:link,*/
+/*header a:visited {*/
+/*    text-transform: uppercase;*/
+/*    font-size: 12px;*/
+/*    font-weight: 600;*/
+/*    color: var(--white);*/
+/*    text-decoration: none;*/
+/*}*/

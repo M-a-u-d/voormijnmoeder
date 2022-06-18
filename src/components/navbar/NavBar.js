@@ -1,6 +1,10 @@
 import React, {useContext} from 'react';
-import {NavLink, useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
+import "./NavBar.css";
+import vmnlogo2 from "../../assets/vmmlogo2.svg"
+import Button from "../button/Button";
+
 
 function NavBar() {
 
@@ -9,23 +13,20 @@ function NavBar() {
 
 
     return (
-        <nav>
-            <div className="nav-container">
-
-                <ul>
-                    <li>
-                        <NavLink to="/" exact activeClassName="active-link">Home</NavLink>
-                    </li>
-
-                    <li>
-                        <NavLink to="/gebeurtenis" activeClassName="active-link">Wat is er te beleven</NavLink>
-                    </li>
-
-                    <li>
-                        <NavLink to="/inlog" activeClassName="active-link">Inloggen</NavLink>
-                    </li>
-                </ul>
+        <nav className="container">
+            <div className="inner-content-container">
+                <Link to="/">
+                    <span className="container">
+                        <img src={vmnlogo2} alt="logo"/>
+                    <h3>
+                        Voor-mijn-moeder
+                    </h3>
+                    </span>
+                </Link>
             </div>
+
+
+            <div className="inner-content-container">
             {isAuth ?
                 <button
                     type="button"
@@ -35,6 +36,22 @@ function NavBar() {
                 </button>
                 :
                 <div>
+
+                    <button
+                        type="button"
+                        onClick={() =>history.push(`/`)}
+                    >
+                        Beginpagina
+                    </button>
+
+
+                    <button
+                        type="button"
+                        onClick={() =>history.push(`/Gebeurtenis`)}
+                    >
+                        Belevenissen
+                    </button>
+
                     <button
                         type="button"
                         onClick={() => history.push('/signin')}
@@ -47,9 +64,23 @@ function NavBar() {
                     >
                         Registreren
                     </button>
+
+                    <button
+                        type="button"
+                        onClick={() =>history.push(`/profile`)}
+                    >
+                        Profiel
+                    </button>
+
+
+
                 </div>
+
+
             }
-        </nav>
+
+        </div>
+    </nav>
     );
 }
 
