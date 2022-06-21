@@ -1,0 +1,27 @@
+/*.gebeurtenissen-info-kaart {*/
+/*    border-radius: 4px;*/
+/*    box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);*/
+/*    background-color: var(--white);*/
+/*    flex-basis: 600px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    gap: 16px;*/
+/*    padding: 20px;*/
+/*}*/
+
+.gebeurtenis-artikel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0px 40px 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+.gebeurtenis-artikel-container{
+    display: flex;
+    justify-items: center;
+    text-align: center;
+}

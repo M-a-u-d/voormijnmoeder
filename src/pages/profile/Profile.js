@@ -1,9 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import PageHeader from "../../components/header/PageHeader";
-import vmmlogo2 from "../../assets/vmmlogo2.svg";
-import Loader from "../../components/loader/Loader";
-import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
 

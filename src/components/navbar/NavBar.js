@@ -3,7 +3,6 @@ import {Link, useHistory} from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import "./NavBar.css";
 import vmnlogo2 from "../../assets/vmmlogo2.svg"
-import Button from "../button/Button";
 
 
 function NavBar() {

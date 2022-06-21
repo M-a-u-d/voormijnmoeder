@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {AuthContext} from "../../context/AuthContext";
 import PageHeader from "../../components/header/PageHeader";
-import vmmlogo2 from "../../assets/vmmlogo2.svg";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 
@@ -21,7 +20,7 @@ function SignIn() {
         toggleError(false);
 
         try {
-            const result = await axios.post('http://localhost:8080/login', {
+            const result = await axios.post('http://localhost:8081/users', {
                 email: email,
                 password: password,
             });
@@ -46,8 +45,9 @@ function SignIn() {
                 <h1>i n l o g g e n</h1>
             </PageHeader>
             </div>
+
             <div className="content">
-            <div>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
 
             <form onSubmit={handleSubmit}>
@@ -83,10 +83,11 @@ function SignIn() {
             </form>
 
             <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
-            </div>
+
 
             {loading && <Loader/>}
             {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
+
             </div>
         </>
     );

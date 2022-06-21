@@ -9,7 +9,7 @@ nav-container {
     flex-shrink: 1;
     flex-grow: 0;
     /*We voegen margin toe aan de linker- en rechterkant, zodat de content nooit helemaal tegen de rand gedrukt kan worden*/
-    margin: 0 20px;
+    margin: 0 10px;
     /*We zorgen er ook voor dat deze flex-item op haar beurt ook weer een flexbox container is, waarin alle children onder elkaar komen te staan*/
 
 }

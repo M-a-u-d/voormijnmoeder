@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import PageHeader from "../../components/header/PageHeader";
-import vmmlogo2 from "../../assets/vmmlogo2.svg";
 import axios from "axios";
+import Loader from "../../components/loader/Loader";
+import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 
 function SignUp() {
     // state voor het formulier
@@ -21,7 +22,7 @@ function SignUp() {
         toggleLoading(true);
 
         try {
-            await axios.post('http://localhost:3000/register', {
+            await axios.post('http://localhost:8081/users', {
                 email: email,
                 password: password,
                 username: username,
@@ -48,7 +49,7 @@ function SignUp() {
                 <h1>r e g i s t r e r e n</h1>
                 </PageHeader>
             </div>
-
+            <div className="content">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consectetur, dolore eaque eligendi
                 harum, numquam, placeat quisquam repellat rerum suscipit ullam vitae. A ab ad assumenda, consequuntur deserunt
                 doloremque ea eveniet facere fuga illum in numquam quia reiciendis rem sequi tenetur veniam?
@@ -98,7 +99,12 @@ function SignUp() {
             </form>
 
             <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
-        </>
+
+                {loading && <Loader/>}
+                {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
+
+            </div>
+            </>
     );
 }
 
