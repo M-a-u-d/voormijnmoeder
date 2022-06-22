@@ -44,6 +44,7 @@ function Gebeurtenis () {
     <>
         <div className="outer-content-container">
             <div className="inner-content-container">
+
                 <h2>Wat is er te doen in dit dorp</h2>
 
                 <div className="gebeurtenis-artikel-container">
@@ -52,13 +53,13 @@ function Gebeurtenis () {
                             <GebeurtenisInfoKaart
                                 key={gebeurtenis.id}
 
-                                naam={gebeurtenis.naam}
-                                organisator={gebeurtenis.organisator}
-                                waar={gebeurtenis.waar}
-                                naamwaar={gebeurtenis.naamwaar}
-                                straat={gebeurtenis.straat}
-                                plaats={gebeurtenis.woonplaats}
-                                opmerking={gebeurtenis.opmering}
+                                naam={ gebeurtenis.naam }
+                                organisator={ gebeurtenis.organisator }
+                                waar={ gebeurtenis.waar }
+                                naamwaar={ gebeurtenis.naamwaar }
+                                straat={ gebeurtenis.straat }
+                                plaats={ gebeurtenis.woonplaats }
+                                opmerking={ gebeurtenis.opmerking }
                         />
                         )
 

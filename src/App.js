@@ -8,6 +8,7 @@ import Gebeurtenis from "./pages/gebeurtenis/Gebeurtenis";
 import Profile from "./pages/profile/Profile";
 import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/SignUp";
+import InteressanteLinks from "./pages/interessanteLinks/InteressanteLinks";
 import {AuthContext} from "./context/AuthContext";
 import Footer from "./components/footer/Footer";
 
@@ -41,6 +42,11 @@ function App() {
               <Route exact path="/signup">
                 <SignUp />
               </Route>
+
+              <Route exact path="/interessanteLinks">
+                  <InteressanteLinks />
+              </Route>
+
         </Switch>
 
             <Footer className="outer-content-container">

@@ -1,12 +1,13 @@
 
-tile {
-    width:800px;
-    margin: 2px;
-    display: flex;
+.home-page-container {
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0px 40px 0;
     flex-grow: 1;
-    flex-shrink: 1;
+    flex-shrink: 0;
+    display: flex;
+    justify-items: center;
+    text-align: center;
 }

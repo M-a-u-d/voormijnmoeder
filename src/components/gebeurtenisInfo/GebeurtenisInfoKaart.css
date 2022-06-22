@@ -1,4 +1,4 @@
-.Gebeurtenis-info-kaart {
+.gebeurtenis-info-kaart {
     flex-basis: 300px;
     background: white;
     border-radius: 4px;
@@ -96,8 +96,6 @@ a:visited {
     border-radius: 5px;
     margin: 2px;
 }
-
-
 
 .gebeurtenis-info {
     font-size: 12px;

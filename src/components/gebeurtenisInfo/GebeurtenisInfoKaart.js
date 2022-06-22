@@ -4,11 +4,11 @@ import './GebeurtenisInfoKaart.css';
 //voorbeeld pokemon en reddit en handbags
 
 
-function GebeurtenisInfoKaart ({naam, naamwaar, straat, woonplaats, organisator, opmering}) {
+function GebeurtenisInfoKaart ({naam, naamwaar, straat, woonplaats, organisator, opmerking}) {
 
     return (
 
-        <section className="Gebeurtenis-info-kaart">
+        <section className="gebeurtenis-info-kaart">
 
                     <p className="gebeurtenis-title"> { naam } </p>
                     <p> organisator: { organisator } </p>
@@ -19,7 +19,7 @@ function GebeurtenisInfoKaart ({naam, naamwaar, straat, woonplaats, organisator,
                     <p> { woonplaats }  </p>
 
                     <h4>o p m e r k i n g</h4>
-                    <p> { opmering }  </p>
+                    <p> { opmerking }  </p>
 
         </section>
     );
