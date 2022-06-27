@@ -9,20 +9,25 @@ import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 
 function SignIn() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
+
 
     async function handleSubmit(e) {
         e.preventDefault();
         toggleError(false);
 
         try {
-            const result = await axios.post('http://localhost:8081/users', {
-                email: email,
+
+            const result = await axios.post('http://localhost:8081/authenticate', {
+                username: username,
                 password: password,
+
             });
             // log het resultaat in de console
             console.log(result.data);
@@ -42,51 +47,51 @@ function SignIn() {
             <div className="page-container">
                 <PageHeader>
 
-                <h1>i n l o g g e n</h1>
-            </PageHeader>
+                    <h1>i n l o g g e n</h1>
+                </PageHeader>
             </div>
 
             <div className="content">
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email-field">
-                    Emailadres:
-                    <input
-                        type="email"
-                        id="email-field"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="username-field">
+                        gebruikersnaam:
+                        <input
+                            type="username"
+                            id="username-field"
+                            name="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </label>
 
-                <label htmlFor="password-field">
-                    Wachtwoord:
-                    <input
-                        type="password"
-                        id="password-field"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
-                {error && <p className="error">Combinatie van emailadres en wachtwoord is onjuist</p>}
+                    <label htmlFor="password-field">
+                        Wachtwoord:
+                        <input
+                            type="password"
+                            id="password-field"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                    {error && <p className="error">Combinatie van Gebruikersnaam en wachtwoord is onjuist</p>}
 
-                <button
-                    type="submit"
-                    className="form-button"
-                >
-                    Inloggen
-                </button>
-            </form>
+                    <button
+                        type="submit"
+                        className="form-button"
+                    >
+                        Inloggen
+                    </button>
+                </form>
 
-            <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
+                <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
 
 
-            {loading && <Loader/>}
-            {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
+                {loading && <Loader/>}
+                {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
 
             </div>
         </>

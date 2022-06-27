@@ -32,12 +32,13 @@ p{
 h1 {
   font-size: 65px;
   text-align: center;
+  letter-spacing: 3px;
 }
 
 h2 {
   font-size: 42px;
   text-align: center;
-
+  margin: 32px 0 24px 0;
 }
 
 h3 {
@@ -101,9 +102,7 @@ form input {
   margin: 6px 0;
 }
 
-h2 {
-  margin: 32px 0 24px 0;
-}
+
 
 .content {
   margin: 32px;

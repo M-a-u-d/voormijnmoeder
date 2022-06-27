@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 import PageHeader from "../../components/header/PageHeader";
 import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
+import Loader from "../../components/loader/Loader";
+import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 
 
 function Profile() {
+
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
+
     const [profileData, setProfileData] = useState({});
     const { user } = useContext(AuthContext);
 
@@ -17,7 +23,7 @@ function Profile() {
             const token = localStorage.getItem('token');
 
             try {
-                const result = await axios.get('http://localhost:3000/660/private-content', {
+                const result = await axios.get('http://localhost:8081/profile', {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
@@ -36,7 +42,7 @@ function Profile() {
         <>
             <div className="page-container">
                 <PageHeader>
-                <h1>P r o f i e l</h1>
+                    <h1>P r o f i e l</h1>
                 </PageHeader>
             </div>
 
@@ -57,6 +63,11 @@ function Profile() {
                 </section>
             }
             <p>Terug naar de <Link to="/">Homepagina</Link></p>
+
+            {loading && <Loader/>}
+            {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
+
+
         </>
     );
 }

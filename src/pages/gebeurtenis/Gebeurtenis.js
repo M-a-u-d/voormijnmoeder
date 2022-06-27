@@ -5,6 +5,9 @@ import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import GebeurtenisInfoKaart from "../../components/gebeurtenisInfo/GebeurtenisInfoKaart";
 import axios from "axios";
 import "./Gebeurtenis.css"
+import {Link} from "react-router-dom";
+import backIcon from "../../assets/back-svgrepo-com.svg";
+import orangePlusTeken from "../../assets/orange-plus-sign.svg"
 
 
 function Gebeurtenis () {
@@ -46,12 +49,16 @@ function Gebeurtenis () {
             <div className="inner-content-container">
 
                 <h2>Wat is er te doen in dit dorp</h2>
+                <Link className="gebeurtenis-nieuw aanmaken" to="/gebeurtenisNieuwAanmaken">
+                <img className="orangeplusteken" src={orangePlusTeken} width="20px" alt="terug"/>
+                maak een nieuwe gebeurtenis.
+                </Link>
 
                 <div className="gebeurtenis-artikel-container">
                     {gebeurtenissen.map((gebeurtenis) => {
                         return (
                             <GebeurtenisInfoKaart
-                                key={gebeurtenis.id}
+                                key={gebeurtenis.naam}
 
                                 naam={ gebeurtenis.naam }
                                 organisator={ gebeurtenis.organisator }
@@ -70,6 +77,10 @@ function Gebeurtenis () {
                         {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
                 </div>
                 <h4>best leuk</h4>
+                <Link className="subredditinfo-back" to="/">
+                    <img className="subredditinfo-back-icon" src={backIcon} width="20px" alt="terug"/>
+                    Back to overview
+                </Link>
             </div>
         </div>
     </>

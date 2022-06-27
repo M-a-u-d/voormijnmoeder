@@ -26,6 +26,7 @@ function SignUp() {
                 email: email,
                 password: password,
                 username: username,
+                enabled : true,
             });
 
             // Let op: omdat we geen axios Canceltoken gebruiken zul je hier een memory-leak melding krijgen.
@@ -44,67 +45,67 @@ function SignUp() {
     return (
         <>
 
-            <div className="page-container">
+            <div>
                 <PageHeader>
-                <h1>r e g i s t r e r e n</h1>
+                    <h1>r e g i s t r e r e n</h1>
                 </PageHeader>
             </div>
             <div className="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consectetur, dolore eaque eligendi
-                harum, numquam, placeat quisquam repellat rerum suscipit ullam vitae. A ab ad assumenda, consequuntur deserunt
-                doloremque ea eveniet facere fuga illum in numquam quia reiciendis rem sequi tenetur veniam?
-            </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consectetur, dolore eaque eligendi
+                    harum, numquam, placeat quisquam repellat rerum suscipit ullam vitae. A ab ad assumenda, consequuntur deserunt
+                    doloremque ea eveniet facere fuga illum in numquam quia reiciendis rem sequi tenetur veniam?
+                </p>
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email-field">
-                    Emailadres:
-                    <input
-                        type="email"
-                        id="email-field"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="email-field">
+                        Emailadres:
+                        <input
+                            type="email"
+                            id="email-field"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
 
-                <label htmlFor="username-field">
-                    Gebruikersnaam:
-                    <input
-                        type="text"
-                        id="username-field"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </label>
+                    <label htmlFor="username-field">
+                        Gebruikersnaam:
+                        <input
+                            type="text"
+                            id="username-field"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </label>
 
-                <label htmlFor="password-field">
-                    Wachtwoord:
-                    <input
-                        type="password"
-                        id="password-field"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
-                {error && <p className="error">Dit account bestaat al. Probeer een ander emailadres.</p>}
-                <button
-                    type="submit"
-                    className="form-button"
-                    disabled={loading}
-                >
-                    Registreren
-                </button>
+                    <label htmlFor="password-field">
+                        Wachtwoord:
+                        <input
+                            type="password"
+                            id="password-field"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                    {error && <p className="error">Dit account bestaat al. Probeer een ander emailadres.</p>}
+                    <button
+                        type="submit"
+                        className="form-button"
+                        disabled={loading}
+                    >
+                        Registreren
+                    </button>
 
-            </form>
+                </form>
 
-            <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
+                <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
 
                 {loading && <Loader/>}
                 {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
 
             </div>
-            </>
+        </>
     );
 }
 

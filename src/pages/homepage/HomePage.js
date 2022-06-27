@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import HomepageTegel from "../../components/homePageTegel/HomepageTegel";
-import our_story from '../../assets/our_story.png';
+import our_story from '../../assets/ouderen-aan-tafell.png';
 import "./HomePage.css"
 
 function HomePage () {

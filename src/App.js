@@ -11,6 +11,7 @@ import SignUp from "./pages/signup/SignUp";
 import InteressanteLinks from "./pages/interessanteLinks/InteressanteLinks";
 import {AuthContext} from "./context/AuthContext";
 import Footer from "./components/footer/Footer";
+import GebeurtenisNieuwAanmaken from "./pages/gebeurtnisNieuw/GebeurtenisNieuwAanmaken";
 
 function App() {
   const { isAuth } = useContext(AuthContext);
@@ -46,6 +47,10 @@ function App() {
               <Route exact path="/interessanteLinks">
                   <InteressanteLinks />
               </Route>
+
+            <Route exact path="/gebeurtenisNieuwAanmaken">
+                <GebeurtenisNieuwAanmaken />
+            </Route>
 
         </Switch>
 
