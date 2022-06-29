@@ -48,11 +48,9 @@ function HomePage () {
                                 <Link to="/interessanteLinks"> Interessante links pagina</Link></p>
                         </HomepageTegel>
 
-                        <HomepageTegel img={our_story} imgDescription="The designers" />
+                        <HomepageTegel img={our_story} imgDescription="The party people" />
 
-
-
-                        <HomepageTegel title="Our story">
+                        <HomepageTegel title="hoe het werkt">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis eligendi exercitationem illo, labore laboriosam nihil omnis praesentium. Aspernatur cum deleniti excepturi itaque, laboriosam nisi rerum sunt. At repellendus tenetur veniam!</p>
                         </HomepageTegel>
 

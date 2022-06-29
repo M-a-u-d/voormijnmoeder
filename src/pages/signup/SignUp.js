@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import PageHeader from "../../components/header/PageHeader";
 import axios from "axios";
@@ -14,7 +14,15 @@ function SignUp() {
     // state voor functionaliteit
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const source = axios.CancelToken.source();
     const history = useHistory();
+
+
+    useEffect(() => {
+        return function cleanup() {
+            source.cancel();
+        }
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -26,14 +34,18 @@ function SignUp() {
                 email: email,
                 password: password,
                 username: username,
-                enabled : true,
+                enabled: true,
+            },{
+                cancelToken: source.token,
             });
 
             // Let op: omdat we geen axios Canceltoken gebruiken zul je hier een memory-leak melding krijgen.
             // Om te zien hoe je een canceltoken implementeerd kun je de bonus-branch bekijken!
 
             // als alles goed gegaan is, linken we dyoor naar de login-pagina
+
             history.push('/signin');
+
         } catch(e) {
             console.error(e);
             toggleError(true);
@@ -88,7 +100,9 @@ function SignUp() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
+
                     {error && <p className="error">Dit account bestaat al. Probeer een ander emailadres.</p>}
+
                     <button
                         type="submit"
                         className="form-button"

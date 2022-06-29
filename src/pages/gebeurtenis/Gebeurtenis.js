@@ -55,11 +55,15 @@ function Gebeurtenis () {
                 </Link>
 
                 <div className="gebeurtenis-artikel-container">
-                    {gebeurtenissen.map((gebeurtenis) => {
-                        return (
-                            <GebeurtenisInfoKaart
-                                key={gebeurtenis.naam}
 
+
+                            {gebeurtenissen.map((gebeurtenis) => {
+                        return (
+                            <Link to="/gebeurtenisInfoPagina">
+                                  <div className="gebeurtenisInfoKaart" key={gebeurtenis.naam}>
+                                <GebeurtenisInfoKaart
+
+                                key={gebeurtenis.naam}
                                 naam={ gebeurtenis.naam }
                                 organisator={ gebeurtenis.organisator }
                                 waar={ gebeurtenis.waar }
@@ -67,7 +71,9 @@ function Gebeurtenis () {
                                 straat={ gebeurtenis.straat }
                                 plaats={ gebeurtenis.woonplaats }
                                 opmerking={ gebeurtenis.opmerking }
-                        />
+                                />
+                                  </div>
+                </Link>
                         )
 
 

@@ -24,6 +24,7 @@ function App() {
         <NavBar />
 
         <Switch>
+
               <Route exact path="/">
                 <HomePage />
               </Route>
@@ -47,6 +48,10 @@ function App() {
               <Route exact path="/interessanteLinks">
                   <InteressanteLinks />
               </Route>
+
+            <Route exact path="/gebeurtenisInfoDetail">
+                <GebeurtenisNieuwAanmaken />
+            </Route>
 
             <Route exact path="/gebeurtenisNieuwAanmaken">
                 <GebeurtenisNieuwAanmaken />

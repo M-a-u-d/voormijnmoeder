@@ -1,5 +1,5 @@
 
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -16,10 +16,19 @@ function SignIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
+    const source = axios.CancelToken.source();
 
+    // mocht onze pagina ge-unmount worden voor we klaar zijn met data ophalen, aborten we het request
+    useEffect(() => {
+        return function cleanup() {
+            source.cancel();
+        }
+
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();
+
         toggleError(false);
 
         try {
@@ -27,13 +36,14 @@ function SignIn() {
             const result = await axios.post('http://localhost:8081/authenticate', {
                 username: username,
                 password: password,
-
             });
+
             // log het resultaat in de console
             console.log(result.data);
 
             // geef de JWT token aan de login-functie van de context mee
-            login(result.data.accessToken);
+            login(result.data.jwt);
+
 
         } catch(e) {
             console.error(e);

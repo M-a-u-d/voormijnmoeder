@@ -2,6 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
+import isTokenValid from "../helpers/isTokenValid";
 
 export const AuthContext = createContext({});
 
@@ -19,9 +20,10 @@ function AuthContextProvider({ children }) {
         const token = localStorage.getItem('token');
 
         // als er WEL een token is, haal dan opnieuw de gebruikersdata op
-        if (token) {
+        if (token &&isTokenValid(token)) {
             const decoded = jwt_decode(token);
-            fetchUserData(decoded.sub, token);
+            fetchUserData(decoded.sub, token)
+
         } else {
             // als er GEEN token is doen we niks, en zetten we de status op 'done'
             toggleIsAuth({
@@ -37,6 +39,7 @@ function AuthContextProvider({ children }) {
         localStorage.setItem('token', JWT);
         // decode de token zodat we de ID van de gebruiker hebben en data kunnen ophalen voor de context
         const decoded = jwt_decode(JWT);
+        console.log(decoded)
 
         // geef de ID, token en redirect-link mee aan de fetchUserData functie (staat hieronder)
         fetchUserData(decoded.sub, JWT, '/profile');
@@ -57,10 +60,10 @@ function AuthContextProvider({ children }) {
     }
 
     // Omdat we deze functie in login- en het mounting-effect gebruiken, staat hij hier gedeclareerd!
-    async function fetchUserData(id, token, redirectUrl) {
+    async function fetchUserData(username, token, redirectUrl) {
         try {
             // haal gebruikersdata op met de token en id van de gebruiker
-            const result = await axios.get(`http://localhost:8081/authenticated/${id}`, {
+            const result = await axios.get(`http://localhost:8081/users/${username}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -84,6 +87,7 @@ function AuthContextProvider({ children }) {
             if (redirectUrl) {
                 history.push(redirectUrl);
             }
+
 
         } catch (e) {
             console.error(e);
