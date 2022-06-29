@@ -34,7 +34,8 @@ function App() {
               </Route>
 
               <Route path="/profile">
-                {isAuth ? <Profile /> : <Redirect to="/" />}
+                {/*{isAuth ? <Profile /> : <Redirect to="/" />}*/}
+                  <Profile />
               </Route>
 
               <Route exact path="/signin">

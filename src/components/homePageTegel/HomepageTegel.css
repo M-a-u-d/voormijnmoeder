@@ -19,17 +19,7 @@
     font-weight: 300;
 }
 
-section {
 
-    font-size: 20px;
-    height: 500px;
-    overflow: hidden;
-    justify-content: flex-start;
-    border: 1px solid #BC4C2A;
-    cursor: pointer;
-    margin: 10px 60px 20px 8px;
-
-}
 .home-page-kaart p:last-of-type {
     /*background: ;*/
     margin: 16px 0 4px 0;

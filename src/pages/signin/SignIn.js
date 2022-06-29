@@ -2,7 +2,7 @@
 import React, {useContext, useEffect, useState} from "react";
 
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {AuthContext} from "../../context/AuthContext";
 import PageHeader from "../../components/header/PageHeader";
 import Loader from "../../components/loader/Loader";
@@ -17,6 +17,7 @@ function SignIn() {
     const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
     const source = axios.CancelToken.source();
+    const history = useHistory ();
 
     // mocht onze pagina ge-unmount worden voor we klaar zijn met data ophalen, aborten we het request
     useEffect(() => {
@@ -44,6 +45,7 @@ function SignIn() {
             // geef de JWT token aan de login-functie van de context mee
             login(result.data.jwt);
 
+history.push("/profile")
 
         } catch(e) {
             console.error(e);

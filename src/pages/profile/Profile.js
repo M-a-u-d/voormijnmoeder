@@ -5,6 +5,7 @@ import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
+import orangePlusTeken from "../../assets/orange-plus-sign.svg";
 
 
 function Profile() {
@@ -25,7 +26,7 @@ function Profile() {
             const token = localStorage.getItem('token');
 
             try {
-                const result = await axios.get('http://localhost:8081/users/${username)', {
+                const result = await axios.get('http://localhost:8081/users', {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
@@ -48,44 +49,50 @@ function Profile() {
 
     return (
         <>
-
-            <div className="page-container">
                 <PageHeader>
                     <h1>P r o f i e l</h1>
                 </PageHeader>
-            </div>
 
             <div className="outer-content-container">
                 <div className="inner-content-container">
 
-                    <section className="profiel-opmaak">
+                    <h2>op deze profiel pagina zie je gegevens die alleen jij kunt zien omdat je bent ingelogd.</h2>
 
-                        <h2>Gegevens</h2>
-                        <p><strong>Gebruikersnaam:</strong> {user.username}</p>
-                        <p><strong>Email:</strong> {user.email}</p>
-                        <p><strong> </strong></p>
+                    <div className="profiel-container">
 
-                     </section>
+                         {user &&
+                             <main className="profiel-kaart">
+                             <h2>Gegevens</h2>
+                             <p><strong>Gebruikersnaam:</strong> {user.username}</p>
+                             <p><strong>Email:</strong> {user.email}</p>
+                             <p><strong> </strong></p>
+                            </main>
+                         }
 
             {/*Als er keys in ons object zitten hebben we data, en dan renderen we de content*/}
+
             {Object.keys(profileData).length > 0 &&
 
-                    <section className="profiel-opmaak">
 
+                <main className="profiel-kaart">
                         <h2>Strikt geheime profiel-content</h2>
-                        {/*<h3>{profileData.title}</h3>*/}
-                        {/*<p>{profileData.content}</p>*/}
+                        <h3>{profileData.username}</h3>
+                        <p>{profileData.email}</p>
+                </main>
 
-                    </section>
             }
+
+                    </div>
+
 
             <p>Terug naar de <Link to="/">Homepagina</Link></p>
 
             {loading && <Loader/>}
             {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
 
-                </div>
             </div>
+            </div>
+
         </>
     );
 }

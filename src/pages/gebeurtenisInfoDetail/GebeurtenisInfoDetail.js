@@ -22,11 +22,13 @@ function GebeurtenisInfoDetail() {
                 <h1>r/{id}</h1>
                 <h4>b e L e v e n  d e t a i l</h4>
             </PageHeader>
+
             <main>
                 <section className="outer-content-container ">
                     <div className="inner-content-container">
+
                         {Object.keys(details).length > 0 && (
-                            <div className="subreddit-specification-details">
+                            <div className="gebeurtenis-details">
 
                                 <TitleAndDescription title="Title" description={details.title} />
                                 <TitleAndDescription title="Description" description={details.organisator} />

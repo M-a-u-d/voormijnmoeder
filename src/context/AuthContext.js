@@ -84,9 +84,9 @@ function AuthContextProvider({ children }) {
 
             // als er een redirect URL is meegegeven (bij het mount-effect doen we dit niet) linken we hiernnaartoe door
             // als we de history.push in de login-functie zouden zetten, linken we al door voor de gebuiker is opgehaald!
-            if (redirectUrl) {
-                history.push(redirectUrl);
-            }
+
+                // history.push("/profile");
+
 
 
         } catch (e) {

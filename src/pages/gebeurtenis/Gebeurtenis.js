@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import PageHeader from "../../components/header/PageHeader";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
-import GebeurtenisInfoKaart from "../../components/gebeurtenisInfo/GebeurtenisInfoKaart";
+import GebeurtenisInfoKaart from "../../components/gebeurtenisInfoTegel/GebeurtenisInfoKaart";
 import axios from "axios";
 import "./Gebeurtenis.css"
 import {Link} from "react-router-dom";
@@ -40,11 +40,11 @@ function Gebeurtenis () {
 
     return (
 
-<>
+    <>
             <PageHeader>
                 <h1>b e L e v e n</h1>
             </PageHeader>
-    <>
+
         <div className="outer-content-container">
             <div className="inner-content-container">
 
@@ -55,28 +55,23 @@ function Gebeurtenis () {
                 </Link>
 
                 <div className="gebeurtenis-artikel-container">
+                    {gebeurtenissen.map((gebeurtenis) => {
 
-
-                            {gebeurtenissen.map((gebeurtenis) => {
                         return (
-                            <Link to="/gebeurtenisInfoPagina">
-                                  <div className="gebeurtenisInfoKaart" key={gebeurtenis.naam}>
-                                <GebeurtenisInfoKaart
+                            <Link key={gebeurtenis.naam} to="/gebeurtenisInfoPagina">
 
-                                key={gebeurtenis.naam}
-                                naam={ gebeurtenis.naam }
-                                organisator={ gebeurtenis.organisator }
-                                waar={ gebeurtenis.waar }
-                                naamwaar={ gebeurtenis.naamwaar }
-                                straat={ gebeurtenis.straat }
-                                plaats={ gebeurtenis.woonplaats }
-                                opmerking={ gebeurtenis.opmerking }
-                                />
-                                  </div>
-                </Link>
+                                    <GebeurtenisInfoKaart
+                                        naam={ gebeurtenis.naam }
+                                        organisator={ gebeurtenis.organisator }
+                                        waar={ gebeurtenis.waar }
+                                        naamwaar={ gebeurtenis.naamwaar }
+                                        straat={ gebeurtenis.straat }
+                                        plaats={ gebeurtenis.woonplaats }
+                                        opmerking={ gebeurtenis.opmerking }
+                                    />
+
+                            </Link>
                         )
-
-
                 })}
 
                         {loading && <Loader/>}
@@ -89,7 +84,7 @@ function Gebeurtenis () {
                 </Link>
             </div>
         </div>
-    </>
+
     </>
     );
 }
