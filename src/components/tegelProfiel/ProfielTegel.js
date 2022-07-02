@@ -1,12 +1,12 @@
 import React from 'react';
-import "./HomepageTegel.css"
+import "./ProfielTegel.css"
 
 
-function Tile({ img, imgDescription, title, children }) {
+function ProfielTegel({ img, imgDescription, title, children }) {
 
     return (
 
-        <section className="home-page-kaart">
+        <section className="achterkant-tegels">
 
             {img && <img src={img} alt={imgDescription}/>}
             <h2>{title}</h2>
@@ -16,4 +16,4 @@ function Tile({ img, imgDescription, title, children }) {
     );
 }
 
-export default Tile;
+export default ProfielTegel;

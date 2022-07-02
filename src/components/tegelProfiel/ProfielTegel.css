@@ -1,4 +1,4 @@
-.gebeurtenis-info-kaart {
+.profiel-kaart {
     flex-basis: 300px;
     background: white;
     border-radius: 4px;
@@ -18,4 +18,9 @@
     align-items: center;
     justify-content: center;
     font-weight: 300;
+}
+
+.profiel-kaart p:last-of-type {
+    /*background: ;*/
+    margin: 16px 0 4px 0;
 }

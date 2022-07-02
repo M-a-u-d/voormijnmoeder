@@ -74,6 +74,19 @@ Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer
   justify-content: center;
 }
 
+.mid-container {
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0px 40px 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  justify-items: center;
+  text-align: center;
+}
+
 footer {
   color: var(--white);
   background-color: var(--black);
@@ -112,9 +125,6 @@ form input {
   width: 100%;
 }
 
-section  {
-  margin: 0 0 50px 0;
-}
 
 .error {
   color: var(--black);
@@ -156,8 +166,6 @@ button + button {
   margin-left: 10px;
 }
 
-
-/*wordt nog niet gebruikt styling*/
 ul {
   list-style: none;
   padding: 0;
@@ -167,6 +175,7 @@ ul {
   flex-basis: 250px;
   color: var(--white);
 }
+
 section {
   width: 300px;
   font-size: 20px;
@@ -178,7 +187,9 @@ section {
   margin: 10px 60px 20px 8px;
 
 }
-
+section  {
+  margin: 0 0 50px 0;
+}
 section, h4
 {
   margin: 30px 0px 10px 0;
@@ -187,4 +198,32 @@ section, h4
 section p {
   max-width: 300px;
   font-size: 18px;
+}
+
+ /*opmaakt glow achter de tegels*/
+.achterkant-tegels {
+  flex-basis: 300px;
+  background: white;
+  border-radius: 4px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 2px;
+  padding: 12px;
+  box-shadow:
+          0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+          0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+          0 100px 80px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+}
+
+.achterkant-tegels p:last-of-type {
+  /*background: ;*/
+  margin: 16px 0 4px 0;
 }

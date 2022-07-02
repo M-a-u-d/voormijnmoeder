@@ -38,7 +38,6 @@ function GebeurtenisNieuwAanmaken() {
                 organisator: organisator,
             });
 
-
         } catch(e) {
             console.error(e);
             toggleError(true);
@@ -58,6 +57,8 @@ function GebeurtenisNieuwAanmaken() {
                     <div className="inner-content-container">
 
                         <h2>under construction.</h2>
+
+                        <div className="mid-container, achterkant-tegels">
 
                         <form onSubmit={handleSubmit}>
                             <label htmlFor="naam-field">
@@ -149,16 +150,11 @@ function GebeurtenisNieuwAanmaken() {
                             </button>
 
 
-
-
-                  opmerking
-
-
                     </form>
 
 
                     </div>
-
+                    </div>
                 </div>
                 <Link className="subredditinfo-back" to="/">
                     <img className="subredditinfo-back-icon" src={backIcon} width="20px" alt="terug"/>

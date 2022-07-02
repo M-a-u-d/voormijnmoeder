@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import PageHeader from "../../components/header/PageHeader";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
-import GebeurtenisInfoKaart from "../../components/gebeurtenisInfoTegel/GebeurtenisInfoKaart";
+
+import GebeurtenisInfoKaart from "../../components/tegelGebeurtenisInfo/GebeurtenisInfoKaart";
+
 import axios from "axios";
 import "./Gebeurtenis.css"
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import backIcon from "../../assets/back-svgrepo-com.svg";
 import orangePlusTeken from "../../assets/orange-plus-sign.svg"
 
@@ -13,12 +15,12 @@ import orangePlusTeken from "../../assets/orange-plus-sign.svg"
 function Gebeurtenis () {
     const [gebeurtenissen, setGebeurtenissen] = useState([]);
     const [loading, toggleLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, toggleError] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             toggleLoading(true);
-            setError(false);
+            toggleError(false);
 
             try {
                 const { data } = await axios.get (`http://localhost:8081/gebeurtenissen`);
@@ -27,7 +29,7 @@ function Gebeurtenis () {
 
             } catch (e) {
                 console.error(e);
-                setError(true);
+                toggleError(true);
             }
             toggleLoading(false);
         }
@@ -37,6 +39,7 @@ function Gebeurtenis () {
     }, []);
 
     if (loading) return `loading...`
+
 
     return (
 
@@ -54,11 +57,11 @@ function Gebeurtenis () {
                 maak een nieuwe gebeurtenis.
                 </Link>
 
-                <div className="gebeurtenis-artikel-container">
-                    {gebeurtenissen.map((gebeurtenis) => {
+                <div className="mid-container">
 
+                    {gebeurtenissen.map((gebeurtenis) => {
                         return (
-                            <Link key={gebeurtenis.naam} to="/gebeurtenisInfoPagina">
+                            <Link key={gebeurtenis.naam} to={`/gebeurtenisInfoDetailPage/${gebeurtenis.naam}`}>
 
                                     <GebeurtenisInfoKaart
                                         naam={ gebeurtenis.naam }
@@ -71,17 +74,21 @@ function Gebeurtenis () {
                                     />
 
                             </Link>
-                        )
+                    )
+
                 })}
 
                         {loading && <Loader/>}
                         {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
                 </div>
+
                 <h4>best leuk</h4>
+
                 <Link className="subredditinfo-back" to="/">
                     <img className="subredditinfo-back-icon" src={backIcon} width="20px" alt="terug"/>
                     Back to overview
                 </Link>
+
             </div>
         </div>
 

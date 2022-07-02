@@ -5,7 +5,9 @@ import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
-import orangePlusTeken from "../../assets/orange-plus-sign.svg";
+import "./Profile.css"
+
+import ProfielTegel from "../../components/tegelProfiel/ProfielTegel";
 
 
 function Profile() {
@@ -49,49 +51,66 @@ function Profile() {
 
     return (
         <>
+            <div>
                 <PageHeader>
                     <h1>P r o f i e l</h1>
+                    <h2>hallo { user.username }</h2>
                 </PageHeader>
+            </div>
 
             <div className="outer-content-container">
                 <div className="inner-content-container">
 
-                    <h2>op deze profiel pagina zie je gegevens die alleen jij kunt zien omdat je bent ingelogd.</h2>
+                    <h3>op deze plek zie je gegevens die alleen jij kunt zien omdat je bent ingelogd.</h3>
 
-                    <div className="profiel-container">
+                    <div className="mid-container">
 
+                    <ProfielTegel title="basisgegevens">
                          {user &&
-                             <main className="profiel-kaart">
-                             <h2>Gegevens</h2>
+                             <>
                              <p><strong>Gebruikersnaam:</strong> {user.username}</p>
                              <p><strong>Email:</strong> {user.email}</p>
-                             <p><strong> </strong></p>
-                            </main>
-                         }
 
+                            </>
+                         }
+                    </ProfielTegel>
             {/*Als er keys in ons object zitten hebben we data, en dan renderen we de content*/}
 
-            {Object.keys(profileData).length > 0 &&
+                    <ProfielTegel title="Strikt geheime profiel-content">
+                         {Object.keys(profileData).length > 0 &&
+                            <>
+                            <h3>{profileData.username}</h3>
+                            <p>{profileData.email}</p>
+                            <p><strong>telefoonnummer</strong>: {profileData.contactphone}</p>
+                        </>
+                         }
+                    </ProfielTegel>
 
+                    <ProfielTegel title="profiel foto">
 
-                <main className="profiel-kaart">
-                        <h2>Strikt geheime profiel-content</h2>
-                        <h3>{profileData.username}</h3>
-                        <p>{profileData.email}</p>
-                </main>
+                            <>
+                                <p>fotoding implementeren</p>
+                            </>
 
-            }
+                    </ProfielTegel>
+
+                        <ProfielTegel title="mijn gebeurtenissen">
+
+                            <>
+                                <p>haal content op</p>
+                            </>
+
+                        </ProfielTegel>
 
                     </div>
-
+                </div>
+            </div>
 
             <p>Terug naar de <Link to="/">Homepagina</Link></p>
 
             {loading && <Loader/>}
             {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
 
-            </div>
-            </div>
 
         </>
     );

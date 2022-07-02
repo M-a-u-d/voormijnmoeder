@@ -17,15 +17,13 @@ function NavBar() {
                 <Link to="/">
                     <span className="container">
                         <img src={vmnlogo2} alt="logo"/>
-                    <h3>
-                        Voor-mijn-moeder
-                    </h3>
                     </span>
                 </Link>
             </div>
 
 
             <div className="inner-content-container">
+
             {isAuth ?
                 <button
                     type="button"
@@ -34,15 +32,14 @@ function NavBar() {
                     Log uit
                 </button>
                 :
-                <div>
 
+                <div>
                     <button
                         type="button"
                         onClick={() =>history.push(`/`)}
                     >
                         Beginpagina
                     </button>
-
 
                     <button
                         type="button"
@@ -57,6 +54,7 @@ function NavBar() {
                     >
                         Log in
                     </button>
+
                     <button
                         type="button"
                         onClick={() => history.push('/signup')}
@@ -70,9 +68,6 @@ function NavBar() {
                     >
                         Profiel
                     </button>
-
-
-
                 </div>
 
 

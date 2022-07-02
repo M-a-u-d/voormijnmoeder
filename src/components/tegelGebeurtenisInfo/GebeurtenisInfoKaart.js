@@ -8,7 +8,7 @@ function GebeurtenisInfoKaart ({naam, naamwaar, straat, woonplaats, organisator,
 
     return (
 
-        <section className="gebeurtenis-info-kaart">
+        <section className="achterkant-tegels">
 
                     <p className="gebeurtenis-title"> { naam } </p>
                     <p> organisator: { organisator } </p>

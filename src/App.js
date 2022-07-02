@@ -1,17 +1,19 @@
-
 import './App.css';
 import NavBar from "./components/navbar/NavBar";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {useContext} from "react";
+import {AuthContext} from "./context/AuthContext";
+import Footer from "./components/footer/Footer";
+
+import GebeurtenisNieuwAanmaken from "./pages/gebeurtnisNieuw/GebeurtenisNieuwAanmaken";
 import HomePage from "./pages/homepage/HomePage";
 import Gebeurtenis from "./pages/gebeurtenis/Gebeurtenis";
 import Profile from "./pages/profile/Profile";
 import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/SignUp";
 import InteressanteLinks from "./pages/interessanteLinks/InteressanteLinks";
-import {AuthContext} from "./context/AuthContext";
-import Footer from "./components/footer/Footer";
-import GebeurtenisNieuwAanmaken from "./pages/gebeurtnisNieuw/GebeurtenisNieuwAanmaken";
+import GebeurtenisInfoDetailPage from "./pages/gebeurtnisInfoDetailPage/GebeurtenisInfoDetailPage";
+import ImageRequestPage from "./pages/imageRequest/ImageRequestPage";
 
 function App() {
   const { isAuth } = useContext(AuthContext);
@@ -50,8 +52,12 @@ function App() {
                   <InteressanteLinks />
               </Route>
 
-            <Route exact path="/gebeurtenisInfoDetail">
-                <GebeurtenisNieuwAanmaken />
+            <Route exact path="/gebeurtenisInfoDetailPage/:naam">
+                <GebeurtenisInfoDetailPage />
+            </Route>
+
+            <Route exact path="/image-request">
+                <ImageRequestPage />
             </Route>
 
             <Route exact path="/gebeurtenisNieuwAanmaken">
