@@ -1,0 +1,41 @@
+
+.Gebeurtenis-info-kaart ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.Gebeurtenis-info-kaart li {
+    padding: 4px;
+    margin: 4px;
+    background: #ededed;
+    border-radius: 4px;
+    text-align: center;
+}
+
+a:link {
+    text-decoration: none;
+    color: RGBA(255, 86, 0, 1);
+}
+
+a:visited {
+    text-decoration: none;
+    color: RGBA(255, 67, 0, 1)
+}
+
+.gebeurtenis-post {
+    /*background-color: RGBA(26, 26, 27, 1);*/
+    border: rgb(129, 131, 132) solid 1px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.gebeurtenis-info {
+    font-size: 12px;
+    color: white;
+}
