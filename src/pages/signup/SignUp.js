@@ -4,6 +4,7 @@ import PageHeader from "../../components/header/PageHeader";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
+import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 function SignUp() {
     // state voor het formulier
@@ -39,11 +40,6 @@ function SignUp() {
                 cancelToken: source.token,
             });
 
-            // Let op: omdat we geen axios Canceltoken gebruiken zul je hier een memory-leak melding krijgen.
-            // Om te zien hoe je een canceltoken implementeerd kun je de bonus-branch bekijken!
-
-            // als alles goed gegaan is, linken we dyoor naar de login-pagina
-
             history.push('/signin');
 
         } catch(e) {
@@ -62,7 +58,7 @@ function SignUp() {
                     <h1>r e g i s t r e r e n</h1>
                 </PageHeader>
             </div>
-            <div className="content">
+            <div className="mid-container">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consectetur, dolore eaque eligendi
                     harum, numquam, placeat quisquam repellat rerum suscipit ullam vitae. A ab ad assumenda, consequuntur deserunt
                     doloremque ea eveniet facere fuga illum in numquam quia reiciendis rem sequi tenetur veniam?
@@ -114,6 +110,8 @@ function SignUp() {
                 </form>
 
                 <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
+
+                <TerugNaarHomePage> </TerugNaarHomePage>
 
                 {loading && <Loader/>}
                 {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}

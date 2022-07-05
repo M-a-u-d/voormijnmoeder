@@ -7,6 +7,7 @@ import {AuthContext} from "../../context/AuthContext";
 import PageHeader from "../../components/header/PageHeader";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
+import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 function SignIn() {
 
@@ -71,7 +72,7 @@ history.push("/profile")
                     <label htmlFor="username-field">
                         gebruikersnaam:
                         <input
-                            type="username"
+                            type="text"
                             id="username-field"
                             name="username"
                             value={username}
@@ -101,6 +102,8 @@ history.push("/profile")
 
                 <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
 
+
+                <TerugNaarHomePage> </TerugNaarHomePage>
 
                 {loading && <Loader/>}
                 {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}

@@ -13,7 +13,7 @@ function GebeurtenisInfoKaart ({naam, naamwaar, straat, woonplaats, organisator,
                     <p className="gebeurtenis-title"> { naam } </p>
                     <p> organisator: { organisator } </p>
 
-                    <h4>w a a r  d a n :</h4>
+                    <h2>w a a r  d a n :</h2>
                     <p> { naamwaar }  </p>
                     <p> { straat }  </p>
                     <p> { woonplaats }  </p>

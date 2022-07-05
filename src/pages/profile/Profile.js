@@ -8,23 +8,26 @@ import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import "./Profile.css"
 
 import ProfielTegel from "../../components/tegelProfiel/ProfielTegel";
+import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 
 function Profile() {
 
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-
     const [profileData, setProfileData] = useState({});
+
+
+    //voor de foto- inladen
+    const [file, setFile] = useState([]);
+    const [previewUrl, setPreviewUrl] = useState('');
+
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const source = axios.CancelToken.source();
 
-        // we halen de pagina-content op in de mounting-cycle
         async function fetchProfileData() {
-            // haal de token uit de Local Storage om in het GET-request te bewijzen dat we geauthoriseerd zijn
-
             const token = localStorage.getItem('token');
 
             try {
@@ -37,6 +40,7 @@ function Profile() {
                 });
 
                 setProfileData(result.data);
+
             } catch (e) {
                 console.error(e);
             }
@@ -49,12 +53,40 @@ function Profile() {
         }
     }, []);
 
+    function handleImageChange(e) {
+        const uploadedFile = e.target.files[0];
+        console.log(uploadedFile);
+        setFile(uploadedFile);
+        setPreviewUrl(URL.createObjectURL(uploadedFile));
+    }
+
+    async function sendImage(e) {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("file", file);
+        const token = localStorage.getItem('token');
+
+        try {
+
+            const result = await axios.post('http://localhost:8081/users/${username}/photo', formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+            console.log(result.data);
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
     return (
         <>
             <div>
                 <PageHeader>
                     <h1>P r o f i e l</h1>
-                    <h2>hallo { user.username }</h2>
+                        {/*<h2>hallo {user.username}</h2>*/}
                 </PageHeader>
             </div>
 
@@ -70,11 +102,9 @@ function Profile() {
                              <>
                              <p><strong>Gebruikersnaam:</strong> {user.username}</p>
                              <p><strong>Email:</strong> {user.email}</p>
-
-                            </>
+                             </>
                          }
                     </ProfielTegel>
-            {/*Als er keys in ons object zitten hebben we data, en dan renderen we de content*/}
 
                     <ProfielTegel title="Strikt geheime profiel-content">
                          {Object.keys(profileData).length > 0 &&
@@ -82,36 +112,42 @@ function Profile() {
                             <h3>{profileData.username}</h3>
                             <p>{profileData.email}</p>
                             <p><strong>telefoonnummer</strong>: {profileData.contactphone}</p>
-                        </>
+                            </>
                          }
                     </ProfielTegel>
 
                     <ProfielTegel title="profiel foto">
+                        <>
+                            <form onSubmit={sendImage}>
+                                <label htmlFor="student-image">
+                                    Kies afbeelding:
+                                    <input type="file" name="image-field" id="student-image" onChange={handleImageChange}/>
+                                </label>
 
-                            <>
-                                <p>fotoding implementeren</p>
-                            </>
-
+                                {previewUrl &&
+                                <label>
+                                    Preview:
+                                    <img src={previewUrl} alt="Voorbeeld van de afbeelding die zojuist gekozen is" className="image-preview"/>
+                                </label>
+                                }
+                                <button type="submit">Uploaden</button>
+                            </form>
+                        </>
                     </ProfielTegel>
 
-                        <ProfielTegel title="mijn gebeurtenissen">
-
-                            <>
-                                <p>haal content op</p>
-                            </>
-
-                        </ProfielTegel>
+                    <ProfielTegel title="mijn gebeurtenissen">
+                        <>
+                            <p>haal content op - under construction</p>
+                        </>
+                    </ProfielTegel>
 
                     </div>
                 </div>
             </div>
 
-            <p>Terug naar de <Link to="/">Homepagina</Link></p>
-
+            <TerugNaarHomePage> </TerugNaarHomePage>
             {loading && <Loader/>}
             {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
-
-
         </>
     );
 }

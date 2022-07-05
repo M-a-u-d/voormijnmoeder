@@ -6,6 +6,7 @@ import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import {Link} from "react-router-dom";
 import backIcon from "../../assets/back-svgrepo-com.svg";
 import axios from "axios";
+import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 function GebeurtenisNieuwAanmaken() {
 
@@ -56,7 +57,7 @@ function GebeurtenisNieuwAanmaken() {
                 <div className="outer-content-container">
                     <div className="inner-content-container">
 
-                        <h2>under construction.</h2>
+                        <h2>maak hier je een belevenis aan zodat men zich hier kan inschrijven. </h2>
 
                         <div className="mid-container, achterkant-tegels">
 
@@ -72,7 +73,6 @@ function GebeurtenisNieuwAanmaken() {
                                 />
                             </label>
 
-
                             <label htmlFor="datum-field">
                                  wanneer gaat het plaatsvinden
                                 <input
@@ -87,9 +87,9 @@ function GebeurtenisNieuwAanmaken() {
                             <label htmlFor="organisator-field">
                                wie organiseert het
                                 <input
-                                    type="datum"
+                                    type="organisator"
                                     id="organisator-field"
-                                    name="organisator"
+                                    name="username"
                                     value={organisator}
                                     onChange={(e) => setOrganisator(e.target.value)}
                                 />
@@ -153,17 +153,16 @@ function GebeurtenisNieuwAanmaken() {
                     </form>
 
 
+                            <TerugNaarHomePage> </TerugNaarHomePage>
                     </div>
                     </div>
                 </div>
-                <Link className="subredditinfo-back" to="/">
-                    <img className="subredditinfo-back-icon" src={backIcon} width="20px" alt="terug"/>
-                    <h3>No worrries, klikt op de terug button kom je weer op dit startpunt uit.</h3>
-                </Link>
+
             </>
             {loading && <Loader/>}
             {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
         </>
-    )}
+    );
+}
 
 export default GebeurtenisNieuwAanmaken;
