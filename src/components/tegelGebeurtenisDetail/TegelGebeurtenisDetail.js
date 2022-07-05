@@ -7,7 +7,7 @@ function TegelGebeurtenisDetail({ naam, omschrijving, organisator, datum, naamwa
 
              <section className="achterkant-tegels">
                  <h1>{ naam } </h1>
-                 <h1>{ omschrijving }</h1>
+                 <h2>{ omschrijving }</h2>
                  <p> organisator: { organisator } </p>
                  <p> tijdstip: { datum }</p>
 

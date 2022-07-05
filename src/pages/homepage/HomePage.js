@@ -23,8 +23,7 @@ function HomePage () {
             <div className="outer-content-container">
                 <div className="inner-content-container">
 
-                    <h2>Dit is de startpunt pagina, klikt op onderstaande en stap naar de details.</h2>
-                    <h3>No worrries als je klikt op de terug button kom je weer op dit startpunt uit.</h3>
+                    <h4>Dit is de startpunt pagina, klikt op onderstaande en stap naar de details.</h4>
 
                     <div className="mid-container">
 

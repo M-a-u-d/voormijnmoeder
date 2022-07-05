@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from "./components/navbar/NavBar";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "./context/AuthContext";
 import Footer from "./components/footer/Footer";
 
@@ -15,17 +15,18 @@ import InteressanteLinks from "./pages/interessanteLinks/InteressanteLinks";
 import GebeurtenisInfoDetailPage from "./pages/gebeurtnisInfoDetailPage/GebeurtenisInfoDetailPage";
 import ImageRequestPage from "./pages/imageRequest/ImageRequestPage";
 
+
+
+
 function App() {
   const { isAuth } = useContext(AuthContext);
 
 
   return (
       <>
-
           <div className="content">
-        <NavBar />
-
-        <Switch>
+            <NavBar />
+            <Switch>
 
               <Route exact path="/">
                 <HomePage />
@@ -42,11 +43,11 @@ function App() {
 
               <Route exact path="/signin">
                 <SignIn />
+              </Route>
 
-              </Route>
-              <Route exact path="/signup">
-                <SignUp />
-              </Route>
+                <Route exact path="/signup">
+                   <SignUp />
+                </Route>
 
               <Route exact path="/interessanteLinks">
                   <InteressanteLinks />
@@ -56,7 +57,7 @@ function App() {
                 <GebeurtenisInfoDetailPage />
             </Route>
 
-            <Route exact path="/image-request">
+            <Route exact path="/imagerequestpage">
                 <ImageRequestPage />
             </Route>
 

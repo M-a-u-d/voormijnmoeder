@@ -1,33 +1,50 @@
-import React, { useContext, useEffect, useState } from 'react';
-import {Link, useParams} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import TegelGebeurtenisDetail from '../../components/tegelGebeurtenisDetail/TegelGebeurtenisDetail';
 import Loader from '../../components/loader/Loader';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 import PageHeader from "../../components/header/PageHeader";
-import backIcon from "../../assets/back-svgrepo-com.svg";
-import gebeurtenis from "../gebeurtenis/Gebeurtenis";
+import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 function GebeurtenisInfoDetailPage() {
 
+
+    const [details, setDetails] = useState({});
+    const [userUsername, setUserUsername ] = useState('')
+    const [gebeurtenisNaam, setGebeurtenisNaam ] = useState('')
+
+    const history = useHistory();
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
-    const [username, setUsername] = useState('')
-    const [details, setDetails] = useState({});
+    const source = axios.CancelToken.source();
 
     const { naam } = useParams();
-    // const currentGebeurtenis = gebeurtenissen.find((gebeurtenis) => {
-    //     return gebeurtenis.naam === gebeurtenisNaam;
-    // });
+    const { userusername } = useParams()
+    const { gebeurtenisnaam } = useParams()
+
+    useEffect(() => {
+        return function cleanup() {
+            source.cancel();
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchData() {
             toggleLoading(true);
 
-            // const naam = localStorage.getItem('naam');
+            const source = axios.CancelToken.source();
 
+            const token = localStorage.getItem('token');
                 try {
-                    const response = await axios.get(`http://localhost:8081/gebeurtenissen/${naam}`);
+                    const response = await axios.get(`http://localhost:8081/gebeurtenissen/${naam}`,{
+                        headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+
+                    },
+                    cancelToken: source.token,
+                });
                     setDetails(response.data);
                     console.log(response.data);
 
@@ -39,20 +56,31 @@ function GebeurtenisInfoDetailPage() {
             }
 
             fetchData();
+        return function cleanup() {
+            source.cancel();
+        }
 
         }, []);
 
     async function handleSubmit(e) {
-
         e.preventDefault();
         toggleError(false);
         toggleLoading(true);
+        const token = localStorage.getItem('token');
 
         try {
-            await axios.post('http://localhost:8081/geus/${username}/${gebeurtenisnaam}', {
-                username: username,
+            await axios.post(`http://localhost:8081/geus/${userusername}/${gebeurtenisnaam}`,  {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                    userusername : userusername,
+                    gebeurtenisnaam : gebeurtenisnaam,
 
+                }},{
+                cancelToken: source.token,
             });
+
+            history.push('/profiel');
 
         } catch(e) {
             console.error(e);
@@ -98,16 +126,27 @@ function GebeurtenisInfoDetailPage() {
 
                                     <form onSubmit={handleSubmit}>
 
-                                    <label htmlFor="naam-field">
+                                    <label htmlFor="userUsername-field">
                                         Mijn naam :
                                         <input
-                                            type="naam"
-                                            id="naam-field"
-                                            name="naam"
-                                            value={ username }
-                                            onChange={(e) => setUsername(e.target.value)}
+                                            type="text"
+                                            id="userUsername-field"
+                                            name="userUsername"
+                                            value={ userUsername }
+                                            onChange={(e) => setUserUsername(e.target.value)}
                                         />
                                     </label>
+
+                                        <label htmlFor="gebeurtenisNaam-field">
+                                            Mijn gebeurtenis :
+                                            <input
+                                                type="text"
+                                                id="gebeurtenisNaam-field"
+                                                name="gebeurtenisNaam"
+                                                value={ gebeurtenisNaam }
+                                                onChange={(e) => setGebeurtenisNaam(e.target.value)}
+                                            />
+                                        </label>
                                     <button
                                         type="submit"
                                         className="form-button"
@@ -121,16 +160,14 @@ function GebeurtenisInfoDetailPage() {
                             </div>
 
                         {loading && <Loader/>}
-                        {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
-                    </div>
+                        {error && <ErrorMessage>Zorg wel dat je, je juiste inlognaam en gebeurtenisnaam hebt ingevuld.</ErrorMessage>}
+                        </div>
+
+                        <h4>best leuk</h4>
+                        <TerugNaarHomePage> </TerugNaarHomePage>
+
                     </div>
                 </div>
-
-                <h4>best leuk</h4>
-                <Link className="subredditinfo-back" to="/">
-                    <img className="subredditinfo-back-icon" src={backIcon} width="20px" alt="terug"/>
-                    Back to overview
-                </Link>
             </>
         </>
     );

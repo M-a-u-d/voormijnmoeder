@@ -10,6 +10,7 @@ import "./Gebeurtenis.css"
 import {Link, useHistory} from "react-router-dom";
 import backIcon from "../../assets/back-svgrepo-com.svg";
 import orangePlusTeken from "../../assets/orange-plus-sign.svg"
+import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 
 function Gebeurtenis () {
@@ -84,10 +85,7 @@ function Gebeurtenis () {
 
                 <h4>best leuk</h4>
 
-                <Link className="subredditinfo-back" to="/">
-                    <img className="subredditinfo-back-icon" src={backIcon} width="20px" alt="terug"/>
-                    Back to overview
-                </Link>
+                <TerugNaarHomePage> </TerugNaarHomePage>
 
             </div>
         </div>

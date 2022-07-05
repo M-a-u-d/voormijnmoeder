@@ -23,7 +23,6 @@ nav {
     justify-content: space-between;
     width: 100%;
     flex-direction: row;
-    /*justify-content: flex-end;*/
     padding: 5px;
 }
 

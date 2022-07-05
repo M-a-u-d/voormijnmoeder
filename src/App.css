@@ -32,13 +32,16 @@ p{
 h1 {
   font-size: 65px;
   text-align: center;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 }
 
 h2 {
   font-size: 42px;
   text-align: center;
   margin: 32px 0 24px 0;
+}
+h4 {
+  text-align: center;
 }
 
 h3 {
@@ -134,19 +137,19 @@ form input {
 
 /*button styling*/
 button {
-  width: 120px;
+  /*width: 120px;*/
   border: 2px solid #BC4C2A;
   border-radius: 4px;
   color: #2a47bc;
   background-color: transparent;
-  font-size: 14px;
+  font-size: 13px;
   padding: 5px 5px;
   text-transform: lowercase;
   cursor: pointer;
   z-index: 10;
   letter-spacing: 2px;
   font-weight: bold;
-  margin: 5px 0px 0px 0;
+  margin: 5px 0px 0px 10px;
 
 }
 

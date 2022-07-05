@@ -15,7 +15,7 @@ function NavBar() {
         <nav className="container">
             <div className="inner-content-container">
                 <Link to="/">
-                    <span className="container">
+                    <span className="mid-container">
                         <img src={vmnlogo2} alt="logo"/>
                     </span>
                 </Link>
@@ -25,13 +25,48 @@ function NavBar() {
             <div className="inner-content-container">
 
             {isAuth ?
-                <button
-                    type="button"
-                    onClick={logout}
-                >
-                    Log uit
-                </button>
+                <div>
+
+                    <button
+                        type="button"
+                        onClick={() =>history.push(`/`)}
+                    >
+                        Beginpagina
+                    </button>
+
+
+                    <button
+                        type="button"
+                        onClick={() =>history.push(`/profile`)}
+                    >
+                        Profiel
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={logout}
+                    >
+                        Log uit
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={() =>history.push(`/Gebeurtenis`)}
+                    >
+                        Belevenissen
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={() =>history.push(`/gebeurtenisnieuwaanmaken`)}
+                    >
+                        nieuwe belevenis maken
+                    </button>
+
+
+                </div>
                 :
+
 
                 <div>
                     <button

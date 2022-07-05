@@ -2,7 +2,8 @@
 header {
     background: var(--secondary);
     background: linear-gradient(133deg, var(--secondary) 0%, var(--primary) 86%, var(--primary) 100%);
-    text-align: center;
+    dsiplay: flex
+
 }
 
 header img {
@@ -10,8 +11,17 @@ header img {
 }
 
 .hero-content {
-    padding: 100px 0;
+    display: flex;
+    flex-basis: 150px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 70px 0;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 1;
+    flex-grow: 1;
 }
+
 
 
 /*header a,*/
