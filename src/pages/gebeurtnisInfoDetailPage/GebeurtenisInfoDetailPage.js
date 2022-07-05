@@ -105,7 +105,7 @@ function GebeurtenisInfoDetailPage() {
 
                         <div className="mid-container">
 
-                        {Object.keys(details).length > 0 && (
+                            {Object.keys(details).length > 0 && (
                             <div>
                                 {details &&
                                 <TegelGebeurtenisDetail
