@@ -1,6 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
-import PageHeader from "../../components/header/PageHeader";
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import Header from "../../components/header/Header";
 import {AuthContext} from "../../context/AuthContext";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
@@ -10,26 +10,25 @@ import "./Profile.css"
 import ProfielTegel from "../../components/tegelProfiel/ProfielTegel";
 import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
-
 function Profile() {
 
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+
+
     const [profileData, setProfileData] = useState({});
+    // eslint-disable-next-line
+    const [userusername, setUserUsername] = useState([]);
+    const [mijnGebeurtenissen, setMijnGebeurtenissen] = useState([])
 
-
-    //voor de foto- inladen
-    const [file, setFile] = useState([]);
-    const [previewUrl, setPreviewUrl] = useState('');
-
-    const { user } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
+    const {filename} = useParams()
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const source = axios.CancelToken.source();
 
         async function fetchProfileData() {
-            const token = localStorage.getItem('token');
-
             try {
                 const result = await axios.get('http://localhost:8081/users', {
                     headers: {
@@ -51,43 +50,67 @@ function Profile() {
         return function cleanup() {
             source.cancel();
         }
+        // eslint-disable-next-line
     }, []);
 
-    function handleImageChange(e) {
-        const uploadedFile = e.target.files[0];
-        console.log(uploadedFile);
-        setFile(uploadedFile);
-        setPreviewUrl(URL.createObjectURL(uploadedFile));
-    }
-
-    async function sendImage(e) {
+    useEffect(() => {
+    async function fetchImage(e) {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("file", file);
-        const token = localStorage.getItem('token');
-
-        try {
-
-            const result = await axios.post('http://localhost:8081/users/${username}/photo', formData,
-                {
+            try {
+                const result = await axios.get(`http://localhost:8081/download/${filename}`, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${token}`,
                     },
                 })
-            console.log(result.data);
-        } catch (e) {
-            console.error(e)
+                console.log(result.data);
+
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
+
+        toggleLoading(false);
         }
-    }
+
+        fetchImage();
+
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        async function fetchMijnGebeurtenissen() {
+            toggleError(false);
+
+            try {
+                const { data } = await axios.get (`http://localhost:8081/gebeurtenissen/${userusername}`, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`,
+                    },
+            })
+                setMijnGebeurtenissen(data);
+                console.log (data)
+
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
+            toggleLoading(false);
+        }
+
+        fetchMijnGebeurtenissen();
+        // eslint-disable-next-line
+    }, []);
+
 
     return (
         <>
             <div>
-                <PageHeader>
+                <Header>
                     <h1>P r o f i e l</h1>
                         {/*<h2>hallo {user.username}</h2>*/}
-                </PageHeader>
+                </Header>
             </div>
 
             <div className="outer-content-container">
@@ -118,27 +141,18 @@ function Profile() {
 
                     <ProfielTegel title="profiel foto">
                         <>
-                            <form onSubmit={sendImage}>
-                                <label htmlFor="student-image">
-                                    Kies afbeelding:
-                                    <input type="file" name="image-field" id="student-image" onChange={handleImageChange}/>
-                                </label>
-
-                                {previewUrl &&
-                                <label>
-                                    Preview:
-                                    <img src={previewUrl} alt="Voorbeeld van de afbeelding die zojuist gekozen is" className="image-preview"/>
-                                </label>
-                                }
-                                <button type="submit">Uploaden</button>
-                            </form>
+                            <p>fetchImage</p>
+                            <p> <Link to="/imagerequestpage"> klik hier om je profielfoto te laden of te wijzgen</Link></p>
                         </>
                     </ProfielTegel>
 
                     <ProfielTegel title="mijn gebeurtenissen">
-                        <>
-                            <p>haal content op - under construction</p>
-                        </>
+                        {Object.keys(mijnGebeurtenissen).length > 0 &&
+                            <>
+                                <p>mijn gemaakte gebeurtenissen: {mijnGebeurtenissen.naam}</p>
+                                <p>mijn ingeschreven gebeurtenissen: {mijnGebeurtenissen.naam}</p>
+                            </>
+                        }
                     </ProfielTegel>
 
                     </div>

@@ -1,6 +1,6 @@
 
 import React, {useState} from "react";
-import PageHeader from "../../components/header/PageHeader";
+import Header from "../../components/header/Header";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import {Link} from "react-router-dom";
@@ -13,27 +13,30 @@ function InteressanteLinks() {
     const [error, toggleError] = useState(false);
 
     return(
-<>
-    <div>
-        <PageHeader>
-            <h1>interessante links</h1>
-        </PageHeader>
-    </div>
-<>
-    <div className="outer-content-container">
-        <div className="inner-content-container">
+        <>
+            <div>
+                <Header>
+                    <h1>interessante links</h1>
+                </Header>
+            </div>
 
-            <h2>under construction.</h2>
+            <div className="outer-content-container">
+                <div className="inner-content-container">
 
-        </div>
+                        <h3>Dit is een paginga met een verzameling van alle instanties die er zijn in dit dorp</h3>
 
-    </div>
+                    <div className="mid-container">
 
-    <TerugNaarHomePage> </TerugNaarHomePage>
-</>
-    {loading && <Loader/>}
-    {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
-</>
-    )}
+                        <h2>under construction.</h2>
 
+                    </div>
+                </div>
+            </div>
+
+            <TerugNaarHomePage> </TerugNaarHomePage>
+            {loading && <Loader/>}
+            {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
+      </>
+    );
+}
 export default InteressanteLinks

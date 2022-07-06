@@ -5,7 +5,7 @@ import './TegelGebeurtenisDetail.css';
 function TegelGebeurtenisDetail({ naam, omschrijving, organisator, datum, naamwaar, straat, woonplaats, opmerking, children }) {
     return (
 
-             <section className="achterkant-tegels">
+             <div>
                  <h1>{ naam } </h1>
                  <h2>{ omschrijving }</h2>
                  <p> organisator: { organisator } </p>
@@ -20,7 +20,7 @@ function TegelGebeurtenisDetail({ naam, omschrijving, organisator, datum, naamwa
                  <p> { opmerking }  </p>
 
                  {children}
-             </section>
+             </div>
 
     );
 }

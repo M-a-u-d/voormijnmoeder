@@ -4,7 +4,7 @@ import axios from 'axios';
 import TegelGebeurtenisDetail from '../../components/tegelGebeurtenisDetail/TegelGebeurtenisDetail';
 import Loader from '../../components/loader/Loader';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
-import PageHeader from "../../components/header/PageHeader";
+import Header from "../../components/header/Header";
 import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 function GebeurtenisInfoDetailPage() {
@@ -93,82 +93,76 @@ function GebeurtenisInfoDetailPage() {
     return (
         <>
             <div>
-                <PageHeader>
+                <Header>
                     <h2>b e L e v e n - d e t a i l</h2>
                     <h1>{ naam }</h1>
-                </PageHeader>
+                </Header>
             </div>
 
-            <>
                 <div className="outer-content-container ">
                     <div className="inner-content-container">
 
+                        <h3>ik schrijf me in</h3>
+
                         <div className="mid-container">
 
+                            <section className="achterkant-tegels">
                             {Object.keys(details).length > 0 && (
                             <div>
                                 {details &&
                                 <TegelGebeurtenisDetail
-
-                                        omschrijving={details.opmerking}
-                                        organisator = {details.organisator}
-                                        woonplaats={details.woonplaats}
-                                        straat={details.naamwaar}
-                                        wanneer={details.wanneer}
+                                    omschrijving={details.opmerking}
+                                    organisator = {details.organisator}
+                                    woonplaats={details.woonplaats}
+                                    straat={details.naamwaar}
+                                    wanneer={details.wanneer}
                                 />
                                     }
-
                             </div>
                         )}
+                            </section>
+<section className="achterkant-tegels">
+                            <form onSubmit={handleSubmit}>
 
-                            <div className="gebeurtenis-details">
-                                    <p>ik schrijf me in</p>
+                                <label htmlFor="userUsername-field">
+                                    Mijn naam :
+                                    <input
+                                        type="text"
+                                        id="userUsername-field"
+                                        name="userUsername"
+                                        value={ userUsername }
+                                        onChange={(e) => setUserUsername(e.target.value)}
+                                    />
+                                </label>
 
-                                    <form onSubmit={handleSubmit}>
+                                <label htmlFor="gebeurtenisNaam-field">
+                                    Mijn gebeurtenis :
+                                    <input
+                                        type="text"
+                                        id="gebeurtenisNaam-field"
+                                        name="gebeurtenisNaam"
+                                        value={ gebeurtenisNaam }
+                                        onChange={(e) => setGebeurtenisNaam(e.target.value)}
+                                    />
+                                </label>
 
-                                    <label htmlFor="userUsername-field">
-                                        Mijn naam :
-                                        <input
-                                            type="text"
-                                            id="userUsername-field"
-                                            name="userUsername"
-                                            value={ userUsername }
-                                            onChange={(e) => setUserUsername(e.target.value)}
-                                        />
-                                    </label>
+                                <button
+                                    type="submit"
+                                    className="form-button"
+                                    disabled={loading}
+                                >
+                                    Klik op de button en je hebt je ingeschreven.
+                                </button>
 
-                                        <label htmlFor="gebeurtenisNaam-field">
-                                            Mijn gebeurtenis :
-                                            <input
-                                                type="text"
-                                                id="gebeurtenisNaam-field"
-                                                name="gebeurtenisNaam"
-                                                value={ gebeurtenisNaam }
-                                                onChange={(e) => setGebeurtenisNaam(e.target.value)}
-                                            />
-                                        </label>
-                                    <button
-                                        type="submit"
-                                        className="form-button"
-                                        disabled={loading}
-                                    >
-                                        Klik op de button en je hebt je ingeschreven.
-                                    </button>
-
-                                </form>
-
-                            </div>
-
-                        {loading && <Loader/>}
-                        {error && <ErrorMessage>Zorg wel dat je, je juiste inlognaam en gebeurtenisnaam hebt ingevuld.</ErrorMessage>}
+                            </form>
+                        </section>
                         </div>
-
-                        <h4>best leuk</h4>
-                        <TerugNaarHomePage> </TerugNaarHomePage>
-
                     </div>
                 </div>
-            </>
+
+                <TerugNaarHomePage> </TerugNaarHomePage>
+                {loading && <Loader/>}
+                {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
         </>
     );
 }

@@ -4,7 +4,7 @@ import React, {useContext, useEffect, useState} from "react";
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import {AuthContext} from "../../context/AuthContext";
-import PageHeader from "../../components/header/PageHeader";
+import Header from "../../components/header/Header";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
@@ -20,7 +20,6 @@ function SignIn() {
     const source = axios.CancelToken.source();
     const history = useHistory ();
 
-    // mocht onze pagina ge-unmount worden voor we klaar zijn met data ophalen, aborten we het request
     useEffect(() => {
         return function cleanup() {
             source.cancel();
@@ -40,10 +39,8 @@ function SignIn() {
                 password: password,
             });
 
-            // log het resultaat in de console
             console.log(result.data);
 
-            // geef de JWT token aan de login-functie van de context mee
             login(result.data.jwt);
 
 history.push("/profile")
@@ -58,15 +55,18 @@ history.push("/profile")
         <>
 
             <div className="page-container">
-                <PageHeader>
+                <Header>
 
                     <h1>i n l o g g e n</h1>
-                </PageHeader>
+                </Header>
             </div>
 
-            <div className="content">
+            <div className="outer-content-container">
+            <div className="inner-content-container">
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis dolor dolore fuga id molestias qui quo unde?</p>
+                <h3>hier kun je inloggen</h3>
+
+            <div className="mid-container">
 
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="username-field">
@@ -100,15 +100,16 @@ history.push("/profile")
                     </button>
                 </form>
 
-                <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
-
-
-                <TerugNaarHomePage> </TerugNaarHomePage>
-
-                {loading && <Loader/>}
-                {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
 
             </div>
+                <h2>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</h2>
+            </div>
+            </div>
+
+            <TerugNaarHomePage> </TerugNaarHomePage>
+            {loading && <Loader/>}
+            {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
+
         </>
     );
 }
