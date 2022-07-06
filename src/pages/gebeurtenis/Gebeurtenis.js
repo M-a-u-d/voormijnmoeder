@@ -1,14 +1,11 @@
-import React, {useContext, useEffect, useState} from "react";
-import PageHeader from "../../components/header/PageHeader";
+import React, { useEffect, useState } from "react";
+import Header from "../../components/header/Header";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
-
 import GebeurtenisInfoKaart from "../../components/tegelGebeurtenisInfo/GebeurtenisInfoKaart";
-
 import axios from "axios";
 import "./Gebeurtenis.css"
-import {Link, useHistory} from "react-router-dom";
-import backIcon from "../../assets/back-svgrepo-com.svg";
+import { Link } from "react-router-dom";
 import orangePlusTeken from "../../assets/orange-plus-sign.svg"
 import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
@@ -41,22 +38,26 @@ function Gebeurtenis () {
 
     if (loading) return `loading...`
 
-
     return (
-
     <>
-            <PageHeader>
-                <h1>b e L e v e n</h1>
-            </PageHeader>
+        <Header>
+            <h1>b e L e v e n</h1>
+            <h2>Wat is er te doen in dit dorp</h2>
+        </Header>
 
+        <main>
         <div className="outer-content-container">
             <div className="inner-content-container">
 
-                <h2>Wat is er te doen in dit dorp</h2>
-                <Link className="gebeurtenis-nieuw aanmaken" to="/gebeurtenisNieuwAanmaken">
-                <img className="orangeplusteken" src={orangePlusTeken} width="20px" alt="terug"/>
-                maak een nieuwe gebeurtenis.
-                </Link>
+                <div className="tussen">
+                    <h3>Indien je klikt op een beLevenis dan kom je in de detail pagina en hier kun je, je inschrijven</h3>
+                    <p>Als je klik op het plusteken hieronder kun je zelf ook een beLevenis aanmaken. Je moet je wel hiervoor registeren en inloggen</p>
+
+                    <Link to="/gebeurtenisNieuwAanmaken">
+                    <img src={orangePlusTeken} width="20px" alt="terug"/>
+                    maak een nieuwe gebeurtenis.
+                    </Link>
+                </div>
 
                 <div className="mid-container">
 
@@ -79,17 +80,13 @@ function Gebeurtenis () {
 
                 })}
 
-                        {loading && <Loader/>}
-                        {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
                 </div>
-
-                <h4>best leuk</h4>
-
-                <TerugNaarHomePage> </TerugNaarHomePage>
-
             </div>
         </div>
-
+</main>
+        <TerugNaarHomePage> </TerugNaarHomePage>
+        {loading && <Loader/>}
+        {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
     </>
     );
 }

@@ -4,8 +4,6 @@ nav-container {
     flex-direction: row;
     justify-content: flex-end;
     padding: 20px 0;
-
-    flex-basis: 1200px;
     flex-shrink: 1;
     flex-grow: 0;
     /*We voegen margin toe aan de linker- en rechterkant, zodat de content nooit helemaal tegen de rand gedrukt kan worden*/

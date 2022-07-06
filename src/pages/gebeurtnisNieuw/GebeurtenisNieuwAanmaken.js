@@ -1,10 +1,7 @@
-
 import React, {useState} from "react";
-import PageHeader from "../../components/header/PageHeader";
+import Header from "../../components/header/Header";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
-import {Link} from "react-router-dom";
-import backIcon from "../../assets/back-svgrepo-com.svg";
 import axios from "axios";
 import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
@@ -49,26 +46,28 @@ function GebeurtenisNieuwAanmaken() {
     return(
         <>
             <div>
-                <PageHeader>
+                <Header>
                     <h1>Maak een nieuwe gebeurtenis</h1>
-                </PageHeader>
+                </Header>
             </div>
-            <>
                 <div className="outer-content-container">
                     <div className="inner-content-container">
 
-                        <h2>maak hier je een belevenis aan zodat men zich hier kan inschrijven. </h2>
+                        <h3>maak hier je een belevenis aan zodat men zich hier kan inschrijven. </h3>
 
-                        <div className="mid-container, achterkant-tegels">
+                        <div className="mid-container">
 
                         <form onSubmit={handleSubmit}>
+
+                            <section className="achterkant-tegels">
+
                             <label htmlFor="naam-field">
                                 naam van de gebeurtenis
                                 <input
                                     type="naam"
                                     id="naam-field"
                                     name="naam"
-                                    value={naam}
+                                    value={ naam }
                                     onChange={(e) => setNaam(e.target.value)}
                                 />
                             </label>
@@ -76,10 +75,10 @@ function GebeurtenisNieuwAanmaken() {
                             <label htmlFor="datum-field">
                                  wanneer gaat het plaatsvinden
                                 <input
-                                    type="datum"
+                                    type="text"
                                     id="datum-field"
                                     name="datum"
-                                    value={datum}
+                                    value={ datum }
                                     onChange={(e) => setDatum(e.target.value)}
                                 />
                             </label>
@@ -87,21 +86,23 @@ function GebeurtenisNieuwAanmaken() {
                             <label htmlFor="organisator-field">
                                wie organiseert het
                                 <input
-                                    type="organisator"
+                                    type="text"
                                     id="organisator-field"
                                     name="username"
-                                    value={organisator}
+                                    value={ organisator }
                                     onChange={(e) => setOrganisator(e.target.value)}
                                 />
                             </label>
+                            </section>
 
+                            <section className="achterkant-tegels">
                             <label htmlFor="naamwaar-field">
                                 Waar gaat het plaatsvinden
                                 <input
-                                    type="naamwaar"
+                                    type="text"
                                     id="naamwaar-field"
                                     name="naamwaar"
-                                    value={naamwaar}
+                                    value={ naamwaar }
                                     onChange={(e) => setNaamwaar(e.target.value)}
                                 />
                             </label>
@@ -109,10 +110,10 @@ function GebeurtenisNieuwAanmaken() {
                             <label htmlFor="straat-field">
                                 straat
                                 <input
-                                    type="straat"
+                                    type="text"
                                     id="straat-field"
                                     name="straat"
-                                    value={straat}
+                                    value={ straat }
                                     onChange={(e) => setStraat(e.target.value)}
                                 />
                             </label>
@@ -120,49 +121,48 @@ function GebeurtenisNieuwAanmaken() {
                             <label htmlFor="woonplaats-field">
                                 woonplaats
                                 <input
-                                    type="woonplaats"
+                                    type="test"
                                     id="woonplaats-field"
                                     name="woonplaats"
-                                    value={woonplaats}
+                                    value={ woonplaats }
                                     onChange={(e) => setWoonplaats (e.target.value)}
                                 />
                             </label>
+                            </section>
 
+                            <section className="achterkant-tegels">
+                                <label htmlFor="opmerking-field">
+                                    opmerking
+                                    <input
+                                        type="text"
+                                        id="opmerking-field"
+                                        name="opmerking"
+                                        value={ opmerking }
+                                        onChange={(e) => setOpmerking(e.target.value)}
+                                    />
+                                </label>
 
-                            <label htmlFor="opmerking-field">
-                               opmerking
-                                <input
-                                    type="opmerking"
-                                    id="opmerking-field"
-                                    name="opmerking"
-                                    value={opmerking}
-                                    onChange={(e) => setOpmerking(e.target.value)}
-                                />
-                            </label>
+                                <button
+                                    type="submit"
+                                    className="form-button"
+                                    disabled={ loading }
+                                >
+                                    Klik op de button en je gebeurtenis wordt getoond op de algemene pagina.
+                                </button>
 
-
-                            <button
-                                type="submit"
-                                className="form-button"
-                                disabled={loading}
-                            >
-                                Klik op de button en je gebeurtenis wordt getoond op de algemene pagina.
-                            </button>
-
-
+                            </section>
                     </form>
 
 
-                            <TerugNaarHomePage> </TerugNaarHomePage>
-                    </div>
+                        </div>
                     </div>
                 </div>
 
+                <TerugNaarHomePage> </TerugNaarHomePage>
+                {loading && <Loader/>}
+                {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
             </>
-            {loading && <Loader/>}
-            {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
-        </>
-    );
-}
+            );
+            }
 
 export default GebeurtenisNieuwAanmaken;

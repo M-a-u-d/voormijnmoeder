@@ -1,17 +1,19 @@
 import React from 'react';
-import './PageHeader.css';
+import './Header.css';
 
-
-function PageHeader({ children }) {
+function Header({ children }) {
     return (
         <header className="outer-content-container">
             <div className="inner-content-container">
+
                 <div className="hero-content">
                     {children}
+                    <div className="line"></div>
                 </div>
+
             </div>
         </header>
     );
 }
 
-export default PageHeader;
+export default Header;

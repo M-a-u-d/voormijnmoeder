@@ -1,10 +1,7 @@
 import './App.css';
 import NavBar from "./components/navbar/NavBar";
-import {Redirect, Route, Switch} from "react-router-dom";
-import {useContext, useState} from "react";
-import {AuthContext} from "./context/AuthContext";
+import { Route, Switch } from "react-router-dom";
 import Footer from "./components/footer/Footer";
-
 import GebeurtenisNieuwAanmaken from "./pages/gebeurtnisNieuw/GebeurtenisNieuwAanmaken";
 import HomePage from "./pages/homepage/HomePage";
 import Gebeurtenis from "./pages/gebeurtenis/Gebeurtenis";
@@ -15,16 +12,11 @@ import InteressanteLinks from "./pages/interessanteLinks/InteressanteLinks";
 import GebeurtenisInfoDetailPage from "./pages/gebeurtnisInfoDetailPage/GebeurtenisInfoDetailPage";
 import ImageRequestPage from "./pages/imageRequest/ImageRequestPage";
 
-
-
-
 function App() {
-  const { isAuth } = useContext(AuthContext);
-
 
   return (
       <>
-          <div className="content">
+          <div>
             <NavBar />
             <Switch>
 
@@ -37,7 +29,6 @@ function App() {
               </Route>
 
               <Route path="/profile">
-                {/*{isAuth ? <Profile /> : <Redirect to="/" />}*/}
                   <Profile />
               </Route>
 

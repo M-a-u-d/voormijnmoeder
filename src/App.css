@@ -21,12 +21,11 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Quicksand', sans-serif;
-
 }
 
 p{
   font-family: 'Quicksand', sans-serif;
-  color: var(--black)
+  color: var(--black);
 }
 
 h1 {
@@ -38,14 +37,15 @@ h1 {
 h2 {
   font-size: 42px;
   text-align: center;
-  margin: 32px 0 24px 0;
+  margin: 32px 0 0 0;
 }
 h4 {
-  text-align: center;
+  text-align: left;
 }
 
 h3 {
   font-size: 15px;
+  margin: 25px;
 }
 
 a,
@@ -66,11 +66,11 @@ a:visited {
 /*De binnenste container is maximaal 1400px breed, zodat het er ook goed uitziet op brede schermen.
 Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer ruimte is.*/
 .inner-content-container {
-  flex-basis: 1200px;
+  flex-basis: 1400px;
   flex-shrink: 1;
   flex-grow: 0;
   /*We voegen margin toe aan de linker- en rechterkant, zodat de content nooit helemaal tegen de rand gedrukt kan worden*/
-  margin: 0 50px;
+  margin: 0 20px;
   /*We zorgen er ook voor dat deze flex-item op haar beurt ook weer een flexbox container is, waarin alle children onder elkaar komen te staan*/
   display: flex;
   flex-direction: column;
@@ -101,39 +101,39 @@ footer {
 /*formulier styling*/
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background: linear-gradient(133deg, var(--secondary) 0%, var(--primary) 86%, var(--primary) 100%);  padding: 32px;
-  max-width: 300px;
+  /*max-width: 300px;*/
   border-radius: 4px;
 }
 
 form label {
-  margin: 4px 0;
-
-}
+  text-align: left;
+  margin: 8px 0;
+  font-family: 'Quicksand', sans-serif;
+  letter-spacing: 2px}
 
 form input {
   width: 100%;
-  padding: 4px 8px;
-  margin: 6px 0;
+  padding: 10px 8px;
+  margin: 8px 0;
+  letter-spacing: 2px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
 }
 
-
-
-.content {
-  margin: 32px;
-}
+/*.content {*/
+/*  margin: 32px;*/
+/*}*/
 
 .form-button {
   width: 100%;
 }
 
-
 .error {
   color: var(--black);
   font-weight:bold;
 }
-
 
 /*button styling*/
 button {
@@ -150,7 +150,6 @@ button {
   letter-spacing: 2px;
   font-weight: bold;
   margin: 5px 0px 0px 10px;
-
 }
 
 button:hover {
@@ -188,10 +187,6 @@ section {
   border: 1px solid #BC4C2A;
   cursor: pointer;
   margin: 10px 60px 20px 8px;
-
-}
-section  {
-  margin: 0 0 50px 0;
 }
 section, h4
 {
@@ -227,6 +222,36 @@ section p {
 }
 
 .achterkant-tegels p:last-of-type {
-  /*background: ;*/
   margin: 16px 0 4px 0;
 }
+
+/*.Gebeurtenis-info-kaart ul {*/
+/*    list-style-type: none;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-evenly;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+/*.Gebeurtenis-info-kaart li {*/
+/*    padding: 4px;*/
+/*    margin: 4px;*/
+/*    background: #ededed;*/
+/*    border-radius: 4px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.gebeurtenis-post {*/
+/*    !*background-color: RGBA(26, 26, 27, 1);*!*/
+/*    border: rgb(129, 131, 132) solid 1px;*/
+/*    padding: 10px;*/
+/*    border-radius: 5px;*/
+/*    margin: 2px;*/
+/*}*/
+
+/*.gebeurtenis-info {*/
+/*    font-size: 12px;*/
+/*    color: white;*/
+/*}*/

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import PageHeader from "../../components/header/PageHeader";
+import Header from "../../components/header/Header";
 import {Link} from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
@@ -14,16 +14,16 @@ function HomePage () {
     return (
         <>
         <div>
-            <PageHeader>
+            <Header>
             <h1>v o o r  m i j n  m o e d e r</h1>
-            </PageHeader>
+            </Header>
         </div>
-
+            <main>
 
             <div className="outer-content-container">
                 <div className="inner-content-container">
 
-                    <h4>Dit is de startpunt pagina, klikt op onderstaande en stap naar de details.</h4>
+                    <h3>Dit is de startpunt pagina, klikt op onderstaande en stap naar de details.</h3>
 
                     <div className="mid-container">
 
@@ -57,10 +57,9 @@ function HomePage () {
                 </div>
             </div>
 
-
-
             {loading && <Loader/>}
             {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
+</main>
         </>
     );
 }

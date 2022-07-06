@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import PageHeader from "../../components/header/PageHeader";
+import Header from "../../components/header/Header";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
 
 function SignUp() {
-    // state voor het formulier
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    // state voor functionaliteit
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const source = axios.CancelToken.source();
@@ -23,6 +21,7 @@ function SignUp() {
         return function cleanup() {
             source.cancel();
         }
+        // eslint-disable-next-line
     }, []);
 
     async function handleSubmit(e) {
@@ -54,15 +53,21 @@ function SignUp() {
         <>
 
             <div>
-                <PageHeader>
+                <Header>
                     <h1>r e g i s t r e r e n</h1>
-                </PageHeader>
+                </Header>
             </div>
-            <div className="mid-container">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consectetur, dolore eaque eligendi
+
+            <div className="outer-content-container">
+                <div className="inner-content-container">
+
+
+                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque consectetur, dolore eaque eligendi
                     harum, numquam, placeat quisquam repellat rerum suscipit ullam vitae. A ab ad assumenda, consequuntur deserunt
                     doloremque ea eveniet facere fuga illum in numquam quia reiciendis rem sequi tenetur veniam?
-                </p>
+                </h4>
+
+                    <div className="mid-container">
 
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="email-field">
@@ -108,15 +113,16 @@ function SignUp() {
                     </button>
 
                 </form>
+                    </div>
+                <h2>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</h2>
 
-                <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
 
-                <TerugNaarHomePage> </TerugNaarHomePage>
-
-                {loading && <Loader/>}
-                {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
-
+                </div>
             </div>
+
+            <TerugNaarHomePage> </TerugNaarHomePage>
+            {loading && <Loader/>}
+            {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
         </>
     );
 }
