@@ -54,7 +54,7 @@ function Gebeurtenis () {
                     <p>Als je klik op het plusteken hieronder kun je zelf ook een beLevenis aanmaken. Je moet je wel hiervoor registeren en inloggen</p>
 
                     <Link to="/gebeurtenisNieuwAanmaken">
-                    <img src={orangePlusTeken} width="20px" alt="terug"/>
+                    <img src={orangePlusTeken} width="50px" alt="terug"/>
                     maak een nieuwe gebeurtenis.
                     </Link>
                 </div>
