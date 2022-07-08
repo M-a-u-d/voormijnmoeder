@@ -19,6 +19,7 @@ function GebeurtenisNieuwAanmaken() {
     const [naamwaar, setNaamwaar]= useState('')
     const [opmerking, setOpmerking]= useState('')
     const [organisator, setOrganisator]= useState('')
+    const [username, setUsername] = useState('')
     const [datum, setDatum]= useState('')
 
 
@@ -32,6 +33,7 @@ function GebeurtenisNieuwAanmaken() {
 
                 datum: datum,
                 naam: naam,
+                username: username,
                 straat: straat,
                 woonplaats: woonplaats,
                 naamwaar: naamwaar,
@@ -68,7 +70,7 @@ function GebeurtenisNieuwAanmaken() {
                             <label htmlFor="naam-field">
                                 naam van de gebeurtenis
                                 <input
-                                    type="naam"
+                                    type="text"
                                     id="naam-field"
                                     name="naam"
                                     min="4"
@@ -77,6 +79,18 @@ function GebeurtenisNieuwAanmaken() {
                                     onChange={(e) => setNaam(e.target.value)}
                                 />
                             </label>
+
+                            <label htmlFor="username-field">
+                                Gebruikers (profiel) naam
+                                <input
+                                    type="text"
+                                    id="username-field"
+                                    name="gebruikersnaam"
+                                    value={ username }
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                            </label>
+
 
                             <label htmlFor="datum-field">
                                  wanneer gaat het plaatsvinden

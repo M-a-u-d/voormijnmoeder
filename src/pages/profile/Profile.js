@@ -17,8 +17,8 @@ function Profile() {
 
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-
-    const [profileData, setProfileData] = useState('');
+    const [gebeurtenissen, setGebeurtenissen] = useState([]);
+    const [profileData, setProfileData] = useState({});
     // eslint-disable-next-line
     // const [userusername, setUserUsername] = useState([]);
     const [mijnGebeurtenissen, setMijnGebeurtenissen] = useState([]);
@@ -54,7 +54,7 @@ function Profile() {
             toggleLoading(false);
         }
 
-        fetchProfileData();
+        fetchProfileData()
 
         return function cleanup() {
             source.cancel();
@@ -113,6 +113,7 @@ function Profile() {
     }, []);
 
 
+
     return (
         <>
             <div>
@@ -139,19 +140,21 @@ function Profile() {
                          }
                     </ProfielTegel>
 
-                    <ProfielTegel title="Strikt geheime profiel-content">
-                         {Object.keys(profileData).length > 0 &&
-                            <>
-                            <p><strong>gebruikersnaam</strong>: {profileData.username}</p>
-                            <p><strong>email</strong>: {profileData.email}</p>
-                            <p><strong>telefoon nummer</strong>: {profileData.phone}</p>
-                            <p> <strong>geboortedatum</strong>: {profileData.birthdate}</p>
-                            <p><strong>hobbies</strong>: {profileData.hobbies}</p>
-                            <p><strong>huisdier</strong>: {profileData.huisdier}</p>
 
-                            </>
-                         }
-                    </ProfielTegel>
+                        {Object.keys(profileData).length > 0 &&(
+                            <div>
+                            {profileData &&
+                                <ProfielTegel title="Strikt geheime profiel-content">
+                                    <p><strong>gebruikersnaam</strong>: {profileData.username}</p>
+                                    <p><strong>email</strong>: {profileData.email}</p>
+                                    <p><strong>telefoon nummer</strong>: {profileData.phone}</p>
+                                    <p> <strong>geboortedatum</strong>: {profileData.birthdate}</p>
+                                    <p><strong>hobbies</strong>: {profileData.hobbies}</p>
+                                    <p><strong>huisdier</strong>: {profileData.huisdier}</p>
+                                </ProfielTegel>
+                            }
+                            </div>
+                        )}
 
                     <ProfielTegel title="profiel foto">
                         <>
