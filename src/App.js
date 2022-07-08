@@ -28,15 +28,15 @@ function App() {
                 <Gebeurtenis />
               </Route>
 
-              <Route path="/profile">
+              <Route exact path="/profile">
                   <Profile />
               </Route>
 
-                <Route exact path="/profiel/users/:username">
+                <Route  path="/profiel/users/:username">
                     <Profile />
                 </Route>
 
-                <Route exact path="/profiel/gebeurtenissen/:userusername">
+                <Route path="/profiel/gebeurtenissen/:userusername">
                     <Profile />
                 </Route>
 

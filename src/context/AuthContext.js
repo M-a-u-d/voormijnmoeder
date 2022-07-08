@@ -43,8 +43,9 @@ function AuthContextProvider({ children }) {
     }
 
     function logout() {
-        // localStorage.clear();
+
         console.log('De gebruiker is ingelogd!');
+        localStorage.clear();
         toggleIsAuth({
             isAuth: false,
             user: null,
