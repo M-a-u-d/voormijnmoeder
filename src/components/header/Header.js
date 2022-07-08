@@ -8,7 +8,7 @@ function Header({ children }) {
 
                 <div className="hero-content">
                     {children}
-                    <div className="line"></div>
+                    {/*<div className="line"></div>*/}
                 </div>
 
             </div>

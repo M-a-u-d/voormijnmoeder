@@ -3,7 +3,7 @@
 header {
     background: var(--secondary);
     background: linear-gradient(133deg, var(--secondary) 0%, var(--primary) 86%, var(--primary) 100%);
-    position: relative;
+
 }
 
 header img {
@@ -21,17 +21,14 @@ header img {
     justify-items: flex-end;
     flex-shrink: 1;
     flex-grow: 1;
+    position: relative;
 }
 
 .line {
-
     bottom: -50px;
     border-top: 50px solid orange;
     border-left: 100vw solid transparent;
     position: absolute;
-    flex-basis: 1200px;
-    flex-shrink: 1;
-    flex-grow: 0;
 
 }
 

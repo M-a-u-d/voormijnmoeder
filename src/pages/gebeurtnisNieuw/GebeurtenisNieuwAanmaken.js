@@ -4,11 +4,14 @@ import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import axios from "axios";
 import TerugNaarHomePage from "../../components/terugNaarHomepage/TerugNaarHomePage";
+import { useHistory} from 'react-router-dom';
 
 function GebeurtenisNieuwAanmaken() {
 
     const [loading, toggleLoading] = useState(false);
     const [error, toggleError] = useState(false);
+    const history = useHistory();
+
 
     const [naam, setNaam] = useState('');
     const [straat, setStraat]= useState('')
@@ -36,6 +39,8 @@ function GebeurtenisNieuwAanmaken() {
                 organisator: organisator,
             });
 
+            history.push('/');
+
         } catch(e) {
             console.error(e);
             toggleError(true);
@@ -59,7 +64,6 @@ function GebeurtenisNieuwAanmaken() {
 
                         <form onSubmit={handleSubmit}>
 
-                            <section className="achterkant-tegels">
 
                             <label htmlFor="naam-field">
                                 naam van de gebeurtenis
@@ -67,6 +71,8 @@ function GebeurtenisNieuwAanmaken() {
                                     type="naam"
                                     id="naam-field"
                                     name="naam"
+                                    min="4"
+                                    max="20"
                                     value={ naam }
                                     onChange={(e) => setNaam(e.target.value)}
                                 />
@@ -93,15 +99,14 @@ function GebeurtenisNieuwAanmaken() {
                                     onChange={(e) => setOrganisator(e.target.value)}
                                 />
                             </label>
-                            </section>
 
-                            <section className="achterkant-tegels">
                             <label htmlFor="naamwaar-field">
                                 Waar gaat het plaatsvinden
                                 <input
                                     type="text"
                                     id="naamwaar-field"
                                     name="naamwaar"
+
                                     value={ naamwaar }
                                     onChange={(e) => setNaamwaar(e.target.value)}
                                 />
@@ -128,15 +133,17 @@ function GebeurtenisNieuwAanmaken() {
                                     onChange={(e) => setWoonplaats (e.target.value)}
                                 />
                             </label>
-                            </section>
 
-                            <section className="achterkant-tegels">
+
+
                                 <label htmlFor="opmerking-field">
                                     opmerking
                                     <input
                                         type="text"
                                         id="opmerking-field"
                                         name="opmerking"
+                                        max="100"
+                                        size="100"
                                         value={ opmerking }
                                         onChange={(e) => setOpmerking(e.target.value)}
                                     />
@@ -150,11 +157,11 @@ function GebeurtenisNieuwAanmaken() {
                                     Klik op de button en je gebeurtenis wordt getoond op de algemene pagina.
                                 </button>
 
-                            </section>
+
                     </form>
 
-
                         </div>
+
                     </div>
                 </div>
 

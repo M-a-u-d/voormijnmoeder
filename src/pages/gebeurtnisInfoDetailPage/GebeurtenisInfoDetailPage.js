@@ -20,8 +20,8 @@ function GebeurtenisInfoDetailPage() {
     const source = axios.CancelToken.source();
 
     const { naam } = useParams();
-    const { userusername } = useParams()
-    const { gebeurtenisnaam } = useParams()
+    const { userusername } = useParams();
+    const { gebeurtenisnaam } = useParams();
 
     useEffect(() => {
         return function cleanup() {
@@ -121,7 +121,7 @@ function GebeurtenisInfoDetailPage() {
                             </div>
                         )}
                             </section>
-<section className="achterkant-tegels">
+                            <section className="achterkant-tegels">
                             <form onSubmit={handleSubmit}>
 
                                 <label htmlFor="userUsername-field">

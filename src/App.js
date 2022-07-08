@@ -32,25 +32,37 @@ function App() {
                   <Profile />
               </Route>
 
+                <Route exact path="/profiel/users/:username">
+                    <Profile />
+                </Route>
+
+                <Route exact path="/profiel/gebeurtenissen/:userusername">
+                    <Profile />
+                </Route>
+
               <Route exact path="/signin">
                 <SignIn />
               </Route>
 
-                <Route exact path="/signup">
+              <Route exact path="/signup">
                    <SignUp />
-                </Route>
+              </Route>
 
               <Route exact path="/interessanteLinks">
                   <InteressanteLinks />
               </Route>
 
-            <Route exact path="/gebeurtenisInfoDetailPage/:naam">
-                <GebeurtenisInfoDetailPage />
-            </Route>
+                <Route exact path="/gebeurtenisInfoDetailPage/:naam">
+                    <GebeurtenisInfoDetailPage />
+                </Route>
 
             <Route exact path="/imagerequestpage">
                 <ImageRequestPage />
             </Route>
+
+                <Route exact path="/imagerequestpage/:username/:filename">
+                    <ImageRequestPage />
+                </Route>
 
             <Route exact path="/gebeurtenisNieuwAanmaken">
                 <GebeurtenisNieuwAanmaken />

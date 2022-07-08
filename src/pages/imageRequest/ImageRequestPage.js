@@ -6,12 +6,16 @@ import Header from "../../components/header/Header";
 import Loader from "../../components/loader/Loader";
 import ErrorMessage from "../../components/errorMessage/ErrorMessage";
 import ProfielTegel from "../../components/tegelProfiel/ProfielTegel";
+import {useHistory, useParams} from "react-router-dom";
 
 function ImageRequestPage() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [file, setFile] = useState([]);
     const [previewUrl, setPreviewUrl] = useState('');
+    const history = useHistory();
+    const { username } = useParams();
+    const { filename } = useParams();
 
 
     function handleImageChange(e) {
@@ -29,7 +33,7 @@ function ImageRequestPage() {
 
         try {
 
-            const result = await axios.post('http://localhost:8081/users/${username}/photo', formData,
+            const result = await axios.post(`http://localhost:8081/users/${username}/${filename}`, formData,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
@@ -37,6 +41,9 @@ function ImageRequestPage() {
                     },
                 })
             console.log(result.data);
+
+            history.push('/');
+
         } catch (e) {
             console.error(e)
         }
