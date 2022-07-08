@@ -3,7 +3,7 @@ Dit is de read me voor de Frontend van de webapplicatie gemaakt in opdracht van 
 Na lang denken heb ik gekozen voor een persoonlijk onderwerp.
 
 ![stick-figure-met vraagteken1](https://user-images.githubusercontent.com/99027282/178051060-6a57a277-2c85-46f1-b39b-587d199dd753.png)
-![img.png](img.png)
+
 
 Na heel wat bloed, zweet en tranen is dit het uiteindelijk geworden
 
